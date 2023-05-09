@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { updateNote } from 'store/noteSlice';
 
-const ListItem = ({ noteText, handleEditNote, editTextChange }) => {
+const ListItem = ({ noteText, handleEditNote, disabled }) => {
 //   const dispatch = useDispatch();
 
 //   const handleEditNote = (e) => {
@@ -16,7 +16,7 @@ const ListItem = ({ noteText, handleEditNote, editTextChange }) => {
     <div>
       <p>date</p>
       <p>ООО</p>
-      <textarea value={noteText} onChange={handleEditNote}
+      <textarea disabled={disabled} value={noteText} onChange={handleEditNote}
         // onClick={handleNoteUpdate}
       ></textarea>
     </div>

@@ -1,57 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
-import Workspace from './Workspace/Workspace';
 import ListItem from './ListItem/ListItem';
-import Sidebar from './Sidebar/Sidebar';
+import ModalDelete from './ModalDelete/ModalDelete';
+import SearchBox from './SearchBox/SearchBox';
 
 export const App = () => {
-  const [showNoteField, setShowNoteField] = useState(false);
-  const [noteText, setNoteText] = useState('');
+  const [disabled, setDisabled] = useState(true);
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  const [searchText, setSearchText] = useState('');
 
   const [notes, setNotes] = useState([
+    {
+      id: nanoid(),
+      noteText: 'zametochka0',
+    },
+    {
+      id: nanoid(),
+      noteText: 'zametochka1',
+    },
     {
       id: nanoid(),
       noteText: 'zametochka2',
     },
     {
       id: nanoid(),
-      noteText: 'zametochka1',
-    },
-    {
-      id: nanoid(),
-      noteText: 'zametochka1',
-    },
-    {
-      id: nanoid(),
-      noteText: 'zametochka1',
+      noteText: 'zametochka3',
     },
   ]);
-  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(notes.length - 1);
+  const [noteText, setNoteText] = useState(notes[notes.length - 1].noteText);
 
   const handleAddNote = () => {
-    setShowNoteField(true);
+    setNoteText('');
     setNotes([
       ...notes,
       {
         id: nanoid(),
-        noteText,
+        noteText: '',
       },
     ]);
     setSelectedItemIndex(notes.length);
   };
 
+  useEffect(() => {
+    setDisabled(true);
+  }, [selectedItemIndex]);
+
+  useEffect(() => {
+    notes.filter(note =>
+      note.noteText.toLocaleLowerCase().includes(searchText.toLocaleLowerCase)
+    );
+  }, [searchText]);
+
   const handleEditNote = e => {
     const updatedText = e.target.value;
 
     setNoteText(updatedText);
-      setNotes(
-        notes.map((note, index) =>
-          index === selectedItemIndex
-            ? { ...note, noteText: updatedText }
-            : note
-        )
-      );
+    setNotes(
+      notes.map((note, index) =>
+        index === selectedItemIndex ? { ...note, noteText: updatedText } : note
+      )
+    );
     // }
   };
 
@@ -60,22 +70,30 @@ export const App = () => {
     setNoteText(noteText);
   };
 
-  //  const handleDeleteNote = (noteText, itemIndex) => {
-  //   setSelectedItemIndex(itemIndex);
-  //   setNoteText(noteText);
-  // };
+  const handleDeleteNote = () => {
+    setShowModalDelete(true);
+    const newNotes = [...notes];
+    newNotes.splice(selectedItemIndex, 1);
+    setNotes(newNotes);
+    setNoteText(newNotes[newNotes.length - 1].noteText);
+    setShowModalDelete(false);
+  };
 
   return (
     <>
       <div>
-        <button onClick={handleAddNote}>+</button>
+        <div>
+          <button onClick={handleAddNote}>+</button>
+          <button onClick={() => setShowModalDelete(true)}>X</button>
+          <button onClick={() => setDisabled(false)}>✏️</button>
 
-        {showNoteField && (
-          <ListItem
-            noteText={noteText}
-            handleEditNote={handleEditNote}
-          ></ListItem>
-        )}
+          <SearchBox></SearchBox>
+        </div>
+        <ListItem
+          noteText={noteText}
+          handleEditNote={handleEditNote}
+          disabled={disabled}
+        ></ListItem>
       </div>
       <div>
         <ul>
@@ -90,6 +108,12 @@ export const App = () => {
           ))}
         </ul>
       </div>
+      {showModalDelete && (
+        <ModalDelete
+          handleDeleteNote={handleDeleteNote}
+          handleCloseModal={() => setShowModalDelete(false)}
+        ></ModalDelete>
+      )}
     </>
   );
 };
