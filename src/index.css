@@ -1,4 +1,4 @@
-@import-normalize; /* bring in normalize.css styles */
+/* @import-normalize; bring in normalize.css styles */
 
 body {
   margin: 0;
@@ -12,4 +12,83 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root {
+  --main-black: rgba(39, 39, 39, 1);
+  --main-grey: rgb(118, 118, 118);
+  /* --main-light: rgba(255, 255, 255, 1);
+  --main-yellow: rgba(244, 206, 12, 1);
+  --bright-yellow: rgba(255, 199, 0, 1);
+  --btn-black: rgba(13, 12, 17, 1);
+  --btn-no_active: rgba(218, 218, 218, 1);
+  --text_btn-no_active: rgba(142, 142, 142, 1);
+  --main-green: rgba(59, 222, 124, 1); */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  display: flex;
+align-items: center;
+  margin: 0;
+  padding: 0;
+  font-family: inherit;
+  background-color: rgb(250, 250, 250);
+  cursor: pointer;
+  /* box-shadow: none; */
+
+  fill: var(--main-grey);
+  /* border: 1px solid var(--main-grey); */
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--main-black);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.toolbarBox {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+
+  background-color: rgb(225, 225, 225);
+  z-index: 2;
+}
+
+.noteListBox {
+display: flex;
+position: relative;
 }

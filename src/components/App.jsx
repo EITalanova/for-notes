@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import Notiflix, { Notify } from 'notiflix';
+import { Notify } from 'notiflix';
 
 import ListItem from './ListItem/ListItem';
 import ModalDelete from './ModalDelete/ModalDelete';
 import SearchBox from './SearchBox/SearchBox';
+import Sidebar from './Sidebar/Sidebar';
+import Workspace from './Workspace/Workspace';
 
 export const App = () => {
   const [disabled, setDisabled] = useState(true);
@@ -105,41 +107,33 @@ export const App = () => {
 
     filterNotes.splice(selectedItemIndex, 1);
     setNotes(filterNotes);
-    // setNoteText(filterNotes[filterNotes.length - 1].noteText);
     setShowModalDelete(false);
+    setDisabled(true);
   };
 
   return (
     <>
-      <div>
-        <div>
-          <button onClick={handleAddNote}>+</button>
-          <button onClick={() => setShowModalDelete(true)}>X</button>
-          <button onClick={() => setDisabled(false)}>✏️</button>
+      <div className="toolbarBox">
+        <Workspace
+          handleAddNote={handleAddNote}
+          handleShowModalDelete={() => setShowModalDelete(true)}
+          handleDisabled={() => setDisabled(false)}
+        />
 
-          <SearchBox
-            handleSearch={handleSearch}
-            handleChangeSearch={handleChangeSearch}
-          ></SearchBox>
-        </div>
+        <SearchBox
+          handleSearch={handleSearch}
+          handleChangeSearch={handleChangeSearch}
+        />
+      </div>
+
+      <div className="noteListBox">
+        <Sidebar filterNotes={filterNotes} handleNoteClick={handleNoteClick} />
+
         <ListItem
           noteText={noteText}
           handleEditNote={handleEditNote}
           disabled={disabled}
-        ></ListItem>
-      </div>
-      <div>
-        <ul>
-          {filterNotes.map(({ noteText, id }, index) => (
-            <li
-              key={id}
-              id={noteText}
-              onClick={() => handleNoteClick(noteText, index)}
-            >
-              {noteText}
-            </li>
-          ))}
-        </ul>
+        />
       </div>
       {showModalDelete && (
         <ModalDelete

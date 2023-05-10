@@ -1,40 +1,28 @@
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { ReactComponent as DeleteIcon } from '../assets/images/delete.svg';
+import { ReactComponent as AddIcon } from '../assets/images/add.svg';
+import { ReactComponent as EditIcon } from '../assets/images/edit.svg';
 
-import { addNote } from "store/noteSlice";
+import style from '../Workspace/Workspace.module.css';
 
-const Workspace = () => {
-    const dispatch = useDispatch();
 
-    const addTask = () => dispatch(addNote());
-
-    return (
-        <button onClick={addTask}>+</button>
-    )
-}
+const Workspace = ({
+  handleAddNote,
+  handleShowModalDelete,
+  handleDisabled,
+}) => {
+  return (
+    <div className={style.workspaceBox}>
+      <button className={style.workspaceBtn} onClick={handleAddNote}>
+        <AddIcon />
+      </button>
+      <button className={style.workspaceBtn} onClick={handleShowModalDelete}>
+        <DeleteIcon />
+      </button>
+      <button className={style.workspaceBtn} onClick={handleDisabled}>
+        <EditIcon />
+      </button>
+    </div>
+  );
+};
 
 export default Workspace;
-
-
-
-
-
-
-
-// const DeleteNote = () => {
-
-//     return (
-//         <button>+</button>
-//     )
-// }
-
-// export default DeleteNote;
-
-// const EditNote = () => {
-
-//     return (
-//         <button>+</button>
-//     )
-// }
-
-// export default EditNote;
