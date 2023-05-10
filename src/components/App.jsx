@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
+import Notiflix, { Notify } from 'notiflix';
 
 import ListItem from './ListItem/ListItem';
 import ModalDelete from './ModalDelete/ModalDelete';
@@ -28,8 +29,12 @@ export const App = () => {
       noteText: 'zametochka3',
     },
   ]);
+
   const [selectedItemIndex, setSelectedItemIndex] = useState(notes.length - 1);
-  const [noteText, setNoteText] = useState(notes[notes.length - 1].noteText);
+  const [filterNotes, setFilterNotes] = useState([...notes]);
+  const [noteText, setNoteText] = useState(
+    filterNotes[filterNotes.length - 1].noteText
+  );
 
   const handleAddNote = () => {
     setNoteText('');
@@ -48,21 +53,46 @@ export const App = () => {
   }, [selectedItemIndex]);
 
   useEffect(() => {
-    notes.filter(note =>
-      note.noteText.toLocaleLowerCase().includes(searchText.toLocaleLowerCase)
+    setFilterNotes([...notes]);
+  }, [notes]);
+
+  useEffect(() => {
+    setNoteText(filterNotes[filterNotes.length - 1].noteText);
+  }, [filterNotes]);
+
+  const handleSearch = () => {
+    if (!searchText) {
+      setFilterNotes([...notes]);
+      Notify.warning('Please enter your search details');
+      return;
+    }
+    const filteredNotes = filterNotes.filter(note =>
+      note.noteText
+        .toLocaleLowerCase()
+        .includes(searchText.toLocaleLowerCase().trim())
     );
-  }, [searchText]);
+
+    if (filteredNotes.length === 0) {
+      Notify.info('No results matching your search');
+      return;
+    } else {
+      setFilterNotes(filteredNotes);
+    }
+  };
+
+  const handleChangeSearch = e => {
+    setSearchText(e.target.value);
+  };
 
   const handleEditNote = e => {
     const updatedText = e.target.value;
 
     setNoteText(updatedText);
     setNotes(
-      notes.map((note, index) =>
+      filterNotes.map((note, index) =>
         index === selectedItemIndex ? { ...note, noteText: updatedText } : note
       )
     );
-    // }
   };
 
   const handleNoteClick = (noteText, itemIndex) => {
@@ -72,10 +102,10 @@ export const App = () => {
 
   const handleDeleteNote = () => {
     setShowModalDelete(true);
-    const newNotes = [...notes];
-    newNotes.splice(selectedItemIndex, 1);
-    setNotes(newNotes);
-    setNoteText(newNotes[newNotes.length - 1].noteText);
+
+    filterNotes.splice(selectedItemIndex, 1);
+    setNotes(filterNotes);
+    // setNoteText(filterNotes[filterNotes.length - 1].noteText);
     setShowModalDelete(false);
   };
 
@@ -87,7 +117,10 @@ export const App = () => {
           <button onClick={() => setShowModalDelete(true)}>X</button>
           <button onClick={() => setDisabled(false)}>✏️</button>
 
-          <SearchBox></SearchBox>
+          <SearchBox
+            handleSearch={handleSearch}
+            handleChangeSearch={handleChangeSearch}
+          ></SearchBox>
         </div>
         <ListItem
           noteText={noteText}
@@ -97,7 +130,7 @@ export const App = () => {
       </div>
       <div>
         <ul>
-          {notes.map(({ noteText, id }, index) => (
+          {filterNotes.map(({ noteText, id }, index) => (
             <li
               key={id}
               id={noteText}

@@ -1,10 +1,10 @@
 
-const SearchBox = () => {
+const SearchBox = ({ handleChangeSearch, handleSearch}) => {
 
     return (
         <div>
-            <input type="text" />
-            <button>Search</button>
+            <input onChange={handleChangeSearch} type="text" />
+            <button onClick={handleSearch}>Search</button>
         </div>
     )
 };
