@@ -1,0 +1,46 @@
+.modalOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.modalDelete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  gap: 20px;
+  padding: 50px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  background-color: rgb(225, 225, 225);
+}
+
+.closeIcon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 3px;
+}
+
+.modalList {
+  display: flex;
+  gap: 40px;
+}
+
+.modalListBtn {
+  display: flex;
+  justify-content: center;
+  padding: 5px 0;
+  width: 50px;
+}

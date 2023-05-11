@@ -1,17 +1,20 @@
 import style from '../Sidebar/Sidebar.module.css';
 
-
 const Sidebar = ({ filterNotes, handleNoteClick }) => {
   return (
     <ul className={style.notesList}>
-      {filterNotes.map(({ noteText, id }, index) => (
+      {filterNotes.map(({ noteText, id, noteDate }, index) => (
         <li
-           className={style.notesListItem}
+          className={style.notesListItem}
           key={id}
           id={noteText}
-          onClick={() => handleNoteClick(noteText, index)}
+          onClick={() => handleNoteClick(noteText, index, noteDate)}
         >
-          {noteText}
+          <p className={style.notesListTitle}>{noteText}</p>
+          <div className={style.notesListBox}>
+            <span>{noteDate}</span>
+            <p className={style.notesListText}>{noteText}</p>
+          </div>
         </li>
       ))}
     </ul>

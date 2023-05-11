@@ -1,21 +1,24 @@
+import { ReactComponent as CloseIcon } from '../assets/images/close.svg';
+
+import style from '../ModalDelete/ModalDelete.module.css';
+
 const ModalDelete = ({ handleDeleteNote, handleCloseModal }) => {
   return (
-    <div>
-      <button onClick={handleCloseModal}>
-        X
-        <svg>
-          <use>X</use>
-        </svg>
+    <div className={style.modalOverlay}>
+      <div className={style.modalDelete}>
+      <button className={style.closeIcon} onClick={handleCloseModal}>
+        <CloseIcon/>
       </button>
       <p>Are you sure you want to delete this note?</p>
-      <ul>
+      <ul className={style.modalList}>
         <li>
-          <button onClick={handleDeleteNote}>Yes</button>
+          <button className={style.modalListBtn} onClick={handleDeleteNote}>Yes</button>
         </li>
         <li>
-          <button onClick={handleCloseModal}>No</button>
+          <button className={style.modalListBtn} onClick={handleCloseModal}>No</button>
         </li>
-      </ul>
+        </ul>
+        </div>
     </div>
   );
 };
