@@ -28,9 +28,11 @@
 
 .closeIcon {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 12px;
+  right: 12px;
   padding: 3px;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .modalList {
@@ -43,4 +45,5 @@
   justify-content: center;
   padding: 5px 0;
   width: 50px;
+ 
 }

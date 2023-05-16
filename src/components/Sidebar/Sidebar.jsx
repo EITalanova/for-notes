@@ -1,6 +1,9 @@
 import style from '../Sidebar/Sidebar.module.css';
 
-const Sidebar = ({ filterNotes, handleNoteClick }) => {
+const Sidebar = ({ filterNotes,
+  
+  handleNoteClick
+}) => {
   return (
     <ul className={style.notesList}>
       {filterNotes.map(({ noteText, id, noteDate }, index) => (

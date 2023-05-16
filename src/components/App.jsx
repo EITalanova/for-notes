@@ -8,45 +8,39 @@ import SearchBox from './SearchBox/SearchBox';
 import Sidebar from './Sidebar/Sidebar';
 import Workspace from './Workspace/Workspace';
 
-// console.log(new Date().toLocaleDateString().replaceAll('.', '/'));
-
 export const App = () => {
+  const [disabledBtn, setDisabledBtn] = useState(true);
   const [disabled, setDisabled] = useState(true);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [searchText, setSearchText] = useState('');
 
   const [notes, setNotes] = useState([
-    {
-      id: nanoid(),
-      noteDate: '22/03/2000',
-      noteText: 'zametochka0',
-    },
-    {
-      id: nanoid(),
-      noteDate: '22/03/2000',
-      noteText: 'zametochka1',
-    },
-    {
-      id: nanoid(),
-      noteDate: '22/03/2000',
-      noteText: 'zametochka2',
-    },
-    {
-      id: nanoid(),
-      noteDate: '22/03/2000',
-      noteText: 'zametochka3',
-    },
+    // {
+    //   id: nanoid(),
+    //   noteDate: '22/03/2000',
+    //   noteText: 'zametochka0',
+    // },
+    // {
+    //   id: nanoid(),
+    //   noteDate: '22/03/2000',
+    //   noteText: 'zametochka1',
+    // },
+    // {
+    //   id: nanoid(),
+    //   noteDate: '22/03/2000',
+    //   noteText: 'zametochka2',
+    // },
+    // {
+    //   id: nanoid(),
+    //   noteDate: '22/03/2000',
+    //   noteText: 'zametochka3',
+    // },
   ]);
-  const [selectedItemIndex, setSelectedItemIndex] = useState(notes.length - 1);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const [filterNotes, setFilterNotes] = useState([...notes]);
-  const [noteDate, setNoteDate] = useState(
-    filterNotes[filterNotes.length - 1].noteDate
-  );
-  // console.log(noteDate);
+  const [noteDate, setNoteDate] = useState('');
 
-  const [noteText, setNoteText] = useState(
-    filterNotes[filterNotes.length - 1].noteText
-  );
+  const [noteText, setNoteText] = useState('');
 
   const handleAddNote = () => {
     setNoteText('');
@@ -66,20 +60,26 @@ export const App = () => {
   }, [selectedItemIndex]);
 
   useEffect(() => {
-    setNoteDate(filterNotes[filterNotes.length - 1].noteDate);
+    if (filterNotes.length > 0) {
+      setNoteDate(filterNotes[filterNotes.length - 1].noteDate);
+    }
   }, [noteText]);
 
   useEffect(() => {
-    setFilterNotes([...notes]);
+    if (filterNotes.length > 0) {
+      setFilterNotes([...notes]);
+    }
   }, [notes]);
 
   useEffect(() => {
-    setNoteText(filterNotes[filterNotes.length - 1].noteText);
+    if (filterNotes.length > 0) {
+      setNoteDate(filterNotes[filterNotes.length - 1].noteDate);
+      setNoteText(filterNotes[filterNotes.length - 1].noteText);
+    }
   }, [filterNotes.length]);
 
   const handleSearch = () => {
     if (!searchText) {
-      setFilterNotes([...notes]);
       Notify.warning('Please enter your search details');
       return;
     }
@@ -89,12 +89,15 @@ export const App = () => {
         .includes(searchText.toLocaleLowerCase().trim())
     );
 
-    if (filteredNotes.length === 0) {
+    if (!filteredNotes.length) {
+      // setSearchText('');
       Notify.info('No results matching your search');
+
       return;
     } else {
       setFilterNotes(filteredNotes);
     }
+    // setSearchText('');
   };
 
   const handleChangeSearch = e => {
@@ -122,11 +125,10 @@ export const App = () => {
     setSelectedItemIndex(itemIndex);
     setNoteText(noteText);
     setNoteDate(noteDate);
+    setDisabledBtn(false);
   };
 
   const handleDeleteNote = () => {
-    setShowModalDelete(true);
-
     filterNotes.splice(selectedItemIndex, 1);
     setNotes(filterNotes);
     setShowModalDelete(false);
@@ -137,6 +139,7 @@ export const App = () => {
     <>
       <div className="toolbarBox">
         <Workspace
+          disabledBtn={disabledBtn}
           handleAddNote={handleAddNote}
           handleShowModalDelete={() => setShowModalDelete(true)}
           handleDisabled={() => setDisabled(false)}
@@ -149,17 +152,23 @@ export const App = () => {
       </div>
 
       <div className="noteListBox">
-        <Sidebar filterNotes={filterNotes} handleNoteClick={handleNoteClick} />
+        
+          <Sidebar
+            filterNotes={filterNotes}
+            handleNoteClick={handleNoteClick}
+          />
+        
 
-        <ListItem
-          noteDate={Date(noteDate)}
-          noteText={noteText}
-          handleEditNote={handleEditNote}
-          disabled={disabled}
-        />
+        
+          <ListItem
+            noteDate={Date(noteDate)}
+            noteText={noteText}
+            handleEditNote={handleEditNote}
+            disabled={disabled}
+          />
+        
       </div>
       {showModalDelete && (
-
         <ModalDelete
           handleDeleteNote={handleDeleteNote}
           handleCloseModal={() => setShowModalDelete(false)}

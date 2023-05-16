@@ -4,8 +4,8 @@ import { ReactComponent as EditIcon } from '../assets/images/edit.svg';
 
 import style from '../Workspace/Workspace.module.css';
 
-
 const Workspace = ({
+  disabledBtn,
   handleAddNote,
   handleShowModalDelete,
   handleDisabled,
@@ -15,10 +15,18 @@ const Workspace = ({
       <button className={style.workspaceBtn} onClick={handleAddNote}>
         <AddIcon />
       </button>
-      <button className={style.workspaceBtn} onClick={handleShowModalDelete}>
+      <button
+        disabled={disabledBtn}
+        className={style.workspaceBtn}
+        onClick={handleShowModalDelete}
+      >
         <DeleteIcon />
       </button>
-      <button className={style.workspaceBtn} onClick={handleDisabled}>
+      <button
+        disabled={disabledBtn}
+        className={style.workspaceBtn}
+        onClick={handleDisabled}
+      >
         <EditIcon />
       </button>
     </div>

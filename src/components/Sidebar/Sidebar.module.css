@@ -40,7 +40,3 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-.notesListText::first-line {
-  display: none;
-}
