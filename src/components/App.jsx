@@ -15,26 +15,26 @@ export const App = () => {
   const [searchText, setSearchText] = useState('');
 
   const [notes, setNotes] = useState([
-    // {
-    //   id: nanoid(),
-    //   noteDate: '22/03/2000',
-    //   noteText: 'zametochka0',
-    // },
-    // {
-    //   id: nanoid(),
-    //   noteDate: '22/03/2000',
-    //   noteText: 'zametochka1',
-    // },
-    // {
-    //   id: nanoid(),
-    //   noteDate: '22/03/2000',
-    //   noteText: 'zametochka2',
-    // },
-    // {
-    //   id: nanoid(),
-    //   noteDate: '22/03/2000',
-    //   noteText: 'zametochka3',
-    // },
+    {
+      id: nanoid(),
+      noteDate: '22/03/2000',
+      noteText: 'zametochka0',
+    },
+    {
+      id: nanoid(),
+      noteDate: '22/03/2000',
+      noteText: 'zametochka1',
+    },
+    {
+      id: nanoid(),
+      noteDate: '22/03/2000',
+      noteText: 'zametochka2',
+    },
+    {
+      id: nanoid(),
+      noteDate: '22/03/2000',
+      noteText: 'zametochka3',
+    },
   ]);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const [filterNotes, setFilterNotes] = useState([...notes]);
@@ -80,24 +80,22 @@ export const App = () => {
 
   const handleSearch = () => {
     if (!searchText) {
-      Notify.warning('Please enter your search details');
+      setFilterNotes(notes);
       return;
     }
     const filteredNotes = filterNotes.filter(note =>
-      note.noteText
-        .toLocaleLowerCase()
-        .includes(searchText.toLocaleLowerCase().trim())
+      note.noteText.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
     );
 
     if (!filteredNotes.length) {
-      // setSearchText('');
+      setSearchText('');
+
       Notify.info('No results matching your search');
 
       return;
     } else {
       setFilterNotes(filteredNotes);
     }
-    // setSearchText('');
   };
 
   const handleChangeSearch = e => {
@@ -122,6 +120,7 @@ export const App = () => {
   };
 
   const handleNoteClick = (noteText, itemIndex, noteDate) => {
+    
     setSelectedItemIndex(itemIndex);
     setNoteText(noteText);
     setNoteDate(noteDate);
@@ -152,21 +151,14 @@ export const App = () => {
       </div>
 
       <div className="noteListBox">
-        
-          <Sidebar
-            filterNotes={filterNotes}
-            handleNoteClick={handleNoteClick}
-          />
-        
+        <Sidebar filterNotes={filterNotes} handleNoteClick={handleNoteClick} />
 
-        
-          <ListItem
-            noteDate={Date(noteDate)}
-            noteText={noteText}
-            handleEditNote={handleEditNote}
-            disabled={disabled}
-          />
-        
+        <ListItem
+          noteDate={Date(noteDate)}
+          noteText={noteText}
+          handleEditNote={handleEditNote}
+          disabled={disabled}
+        />
       </div>
       {showModalDelete && (
         <ModalDelete
