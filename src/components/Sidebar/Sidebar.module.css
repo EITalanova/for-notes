@@ -15,9 +15,13 @@
   flex-direction: column;
   justify-content: center;
   gap: 10px;
+ padding-left: 5px;
+
+
 
   height: 70px;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.144);
+  cursor: pointer;
 }
 
 .notesListTitle {
@@ -39,4 +43,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.selectedNotesListItem {
+  background-color: rgba(5, 181, 239, 0.214);;
+  border-radius: 5px;
+  font-size: 17px;
 }
