@@ -56,6 +56,7 @@ export const App = () => {
   };
 
   useEffect(() => {
+    setFilterNotes([...notes]);
     setDisabled(true);
   }, [selectedItemIndex]);
 
@@ -120,7 +121,6 @@ export const App = () => {
   };
 
   const handleNoteClick = (noteText, itemIndex, noteDate) => {
-
     setSelectedItemIndex(itemIndex);
     setNoteText(noteText);
     setNoteDate(noteDate);
@@ -132,6 +132,9 @@ export const App = () => {
     setNotes(filterNotes);
     setShowModalDelete(false);
     setDisabled(true);
+
+      setSelectedItemIndex(filterNotes.length - 1);
+
   };
 
   return (
@@ -151,7 +154,11 @@ export const App = () => {
       </div>
 
       <div className="noteListBox">
-        <Sidebar selectedItemIndex={selectedItemIndex} filterNotes={filterNotes} handleNoteClick={handleNoteClick} />
+        <Sidebar
+          selectedItemIndex={selectedItemIndex}
+          filterNotes={filterNotes}
+          handleNoteClick={handleNoteClick}
+        />
 
         <ListItem
           noteDate={Date(noteDate)}
