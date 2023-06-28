@@ -8,7 +8,7 @@
 .workspaceBtn {
   display: flex;
   align-items: center;
-  padding: 4px 19px;
+  padding: 4px 24px;
   fill: rgb(118, 118, 118);
   /* border: 1px solid rgb(118, 118, 118); */
   border-radius: 3px;

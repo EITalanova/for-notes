@@ -79,13 +79,13 @@ body {
 }
 
 .toolbarBox {
-
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 10px 10px;
+  padding: 12px 12px;
 
   background-color: rgb(225, 225, 225);
+  box-shadow: 0px 2px 4px rgba(128, 128, 128, 0.5);
   z-index: 2;
 }
 
