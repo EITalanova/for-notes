@@ -10,7 +10,6 @@ const Sidebar = ({ filterNotes, selectedItemIndex, handleNoteClick }) => {
     <ul className={style.notesList}>
       {filterNotes.map(({ noteText, id, noteDate }, index) => {
         const isSelectedNotes = selectedItemIndex === index;
-        console.log(isSelectedNotes);
         return (
           <li
             className={`${style.notesListItem} ${

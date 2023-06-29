@@ -16,8 +16,6 @@ const noteSlice = createSlice({
 
   reducers: {
     addNote(state, action) {
-      //   console.log(state);
-      //   console.log(action);
       state.notes.push({
         id: nanoid(),
         noteText: action.payload,
@@ -25,7 +23,6 @@ const noteSlice = createSlice({
     },
 
       updateNote(state, action, noteIndex, noteText) {
-          console.log(noteIndex);
     //   const updatedItems = [...state.notes];
       state.notes[noteIndex] = action.payload;
 
@@ -37,7 +34,6 @@ const noteSlice = createSlice({
     },
 
       removeNote(state, action, noteIndex) {
-          console.log(noteIndex);
       const updatedItems = [...state.notes];
       updatedItems.splice(noteIndex, 1);
 
@@ -50,9 +46,7 @@ const noteSlice = createSlice({
 
     
 
-    
-    //   console.log(state);
-    //   console.log(action.payload.noteText);
+
     //   const lastEll = state.notes[state.notes.length - 1];
     //     if (!action.payload) {
     //     return state; // возвращаем текущее состояние хранилища, если payload не определен

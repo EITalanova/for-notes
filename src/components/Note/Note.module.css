@@ -1,10 +1,10 @@
-.listItem {
+.noteSection {
   /* display: flex;
   flex-direction: column; */
   width: calc(100% - 320px);
 }
 
-.listItemText {
+.noteText {
   display: flex;
   padding: 20px 30px;
   border: none;
@@ -14,12 +14,12 @@
   font-size: 16px;
 }
 
-.listItemText::first-line {
+.noteText::first-line {
   font-weight: bold;
   line-height: 1.7;
 }
 
-.listItemDate {
+.noteDate {
   display: flex;
   justify-content: center;
   padding-top: 10px;
