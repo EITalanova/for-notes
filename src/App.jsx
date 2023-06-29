@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix';
 
-import ListItem from './ListItem/ListItem';
-import ModalDelete from './ModalDelete/ModalDelete';
-import SearchBox from './SearchBox/SearchBox';
-import Sidebar from './Sidebar/Sidebar';
-import Workspace from './Workspace/Workspace';
+import ListItem from './components/ListItem/ListItem';
+import ModalDelete from './components/ModalDelete/ModalDelete';
+import SearchBox from './components/SearchBox/SearchBox';
+import Sidebar from './components/Sidebar/Sidebar';
+import Workspace from './components/Workspace/Workspace';
+
+import notesArr from './api/fakeData.json';
 
 export const App = () => {
   const [disabledBtn, setDisabledBtn] = useState(true);
@@ -14,28 +16,7 @@ export const App = () => {
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [searchText, setSearchText] = useState('');
 
-  const [notes, setNotes] = useState([
-    {
-      id: nanoid(),
-      noteDate: '22/03/2000',
-      noteText: 'zametochka0',
-    },
-    {
-      id: nanoid(),
-      noteDate: '22/03/2000',
-      noteText: 'zametochka1',
-    },
-    {
-      id: nanoid(),
-      noteDate: '22/03/2000',
-      noteText: 'zametochka2',
-    },
-    {
-      id: nanoid(),
-      noteDate: '22/03/2000',
-      noteText: 'zametochka3',
-    },
-  ]);
+  const [notes, setNotes] = useState(notesArr);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const [filterNotes, setFilterNotes] = useState([...notes]);
   const [noteDate, setNoteDate] = useState('');
@@ -58,18 +39,21 @@ export const App = () => {
   useEffect(() => {
     setFilterNotes([...notes]);
     setDisabled(true);
+    // eslint-disable-next-line
   }, [selectedItemIndex]);
 
   useEffect(() => {
     if (filterNotes.length > 0) {
       setNoteDate(filterNotes[filterNotes.length - 1].noteDate);
     }
+    // eslint-disable-next-line
   }, [noteText]);
 
   useEffect(() => {
     if (filterNotes.length > 0) {
       setFilterNotes([...notes]);
     }
+    // eslint-disable-next-line
   }, [notes]);
 
   useEffect(() => {
@@ -77,6 +61,7 @@ export const App = () => {
       setNoteDate(filterNotes[filterNotes.length - 1].noteDate);
       setNoteText(filterNotes[filterNotes.length - 1].noteText);
     }
+    // eslint-disable-next-line
   }, [filterNotes.length]);
 
   const handleSearch = () => {

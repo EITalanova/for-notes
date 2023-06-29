@@ -1,4 +1,4 @@
-import { ReactComponent as CloseIcon } from '../assets/images/close.svg';
+import { ReactComponent as CloseIcon } from '../assets/svg/close.svg';
 
 import style from '../ModalDelete/ModalDelete.module.css';
 

@@ -1,7 +1,7 @@
 
 
-const NoteList = () => {
+const NotesList = () => {
 
 }
 
-export default NoteList;
+export default NotesList;

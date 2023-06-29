@@ -1,6 +1,6 @@
-import { ReactComponent as DeleteIcon } from '../assets/images/delete.svg';
-import { ReactComponent as AddIcon } from '../assets/images/add.svg';
-import { ReactComponent as EditIcon } from '../assets/images/edit.svg';
+import { ReactComponent as DeleteIcon } from '../assets/svg/delete.svg';
+import { ReactComponent as AddIcon } from '../assets/svg/add.svg';
+import { ReactComponent as EditIcon } from '../assets/svg/edit.svg';
 
 import style from '../Workspace/Workspace.module.css';
 
