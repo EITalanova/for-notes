@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
@@ -11,12 +11,17 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import { notesReducer } from "./notes/notesSlice";
+import { notesReducer } from './notes/notesSlice';
 
 const notesPersistConfig = {
-    key: 'notes',
-    storage
-}
+  key: 'notes',
+  storage,
+};
+
+const currentNotePersistConfig = {
+  key: 'currentNote',
+  storage,
+};
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -27,10 +32,11 @@ const middleware = [
 ];
 
 export const store = configureStore({
-    reducer: {
-        notes: persistReducer(notesPersistConfig, notesReducer),
-    },
-    middleware,
+  reducer: {
+    notes: persistReducer(notesPersistConfig, notesReducer),
+    currentNote: persistReducer(currentNotePersistConfig, notesReducer),
+  },
+  middleware,
 });
 
 export const persistor = persistStore(store);

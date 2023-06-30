@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-import { Notify } from 'notiflix';
 
 import Note from '../components/Note/Note';
 import ModalDelete from '../components/ModalDelete/ModalDelete';
 import SearchBox from '../components/SearchBox/SearchBox';
-import Sidebar from '../components/Sidebar/Sidebar';
+import NotesList from '../components/NotesList/NotesList';
 import Workspace from '../components/Workspace/Workspace';
 
 import notesArr from '../api/fakeData.json';
 
 const Main = () => {
+  // eslint-disable-next-line
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [disabled, setDisabled] = useState(true);
   const [showModalDelete, setShowModalDelete] = useState(false);
-  const [searchText, setSearchText] = useState('');
 
   const [notes, setNotes] = useState(notesArr);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   const [filterNotes, setFilterNotes] = useState([...notes]);
+  // eslint-disable-next-line
   const [noteDate, setNoteDate] = useState('');
 
   const [noteText, setNoteText] = useState('');
@@ -64,47 +64,6 @@ const Main = () => {
     // eslint-disable-next-line
   }, [filterNotes.length]);
 
-  const handleSearch = () => {
-    if (!searchText) {
-      setFilterNotes(notes);
-      return;
-    }
-    const filteredNotes = filterNotes.filter(note =>
-      note.noteText.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
-    );
-
-    if (!filteredNotes.length) {
-      setSearchText('');
-
-      Notify.info('No results matching your search');
-
-      return;
-    } else {
-      setFilterNotes(filteredNotes);
-    }
-  };
-
-  const handleChangeSearch = e => {
-    setSearchText(e.target.value);
-  };
-
-  const handleEditNote = e => {
-    const updatedText = e.target.value;
-
-    setNoteText(updatedText);
-    setNotes(
-      filterNotes.map((note, index) =>
-        index === selectedItemIndex
-          ? {
-              ...note,
-              noteText: updatedText,
-              noteDate: new Date().toLocaleDateString().replaceAll('.', '/'),
-            }
-          : note
-      )
-    );
-  };
-
   const handleNoteClick = (noteText, itemIndex, noteDate) => {
     setSelectedItemIndex(itemIndex);
     setNoteText(noteText);
@@ -112,52 +71,34 @@ const Main = () => {
     setDisabledBtn(false);
   };
 
-  const handleDeleteNote = () => {
-    filterNotes.splice(selectedItemIndex, 1);
-    setNotes(filterNotes);
-    setShowModalDelete(false);
-    setDisabled(true);
-
-      setSelectedItemIndex(filterNotes.length - 1);
-
-  };
   return (
-      <div>
-     <div className="toolbarBox">
+    <div>
+      <div className="toolbarBox">
         <Workspace
-          disabledBtn={disabledBtn}
           handleAddNote={handleAddNote}
           handleShowModalDelete={() => setShowModalDelete(true)}
           handleDisabled={() => setDisabled(false)}
         />
 
-        <SearchBox
-          handleSearch={handleSearch}
-          handleChangeSearch={handleChangeSearch}
-        />
+        <SearchBox />
       </div>
 
       <div className="noteListBox">
-        <Sidebar
+        <NotesList
           selectedItemIndex={selectedItemIndex}
           filterNotes={filterNotes}
           handleNoteClick={handleNoteClick}
         />
 
-        <Note
-          noteDate={Date(noteDate)}
-          noteText={noteText}
-          handleEditNote={handleEditNote}
-          disabled={disabled}
-        />
+        <Note disabled={disabled} />
       </div>
       {showModalDelete && (
         <ModalDelete
-          handleDeleteNote={handleDeleteNote}
+          // handleDeleteNote={handleDeleteNote}
           handleCloseModal={() => setShowModalDelete(false)}
         ></ModalDelete>
       )}
-      </div>
+    </div>
   );
 };
 

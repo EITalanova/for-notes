@@ -1,0 +1,50 @@
+.notesList {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  height: 100vh;
+  padding: 0 0 0 25px;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.notesListItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding-left: 5px;
+
+  height: 70px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.144);
+  cursor: pointer;
+}
+
+.notesListTitle {
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notesListBox {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  font-size: 13px;
+}
+
+.notesListText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectedNotesListItem {
+  background-color: rgba(5, 181, 239, 0.214);
+  border-radius: 5px;
+  font-size: 17px;
+}
