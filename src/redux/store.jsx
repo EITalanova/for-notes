@@ -11,7 +11,26 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+import { notesReducer } from "./notes/notesSlice";
+
 const notesPersistConfig = {
     key: 'notes',
     storage
 }
+
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+];
+
+export const store = configureStore({
+    reducer: {
+        notes: persistReducer(notesPersistConfig, notesReducer),
+    },
+    middleware,
+});
+
+export const persistor = persistStore(store);
