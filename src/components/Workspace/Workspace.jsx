@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React
+// { useState, useEffect }
+  from 'react';
 
-import { selectCurrentNote } from 'redux/notes/notesSelector';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+// import { selectCurrentNote } from 'redux/notes/notesSelector';
+// import { useSelector } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 import { ReactComponent as DeleteIcon } from '../assets/svg/delete.svg';
 import { ReactComponent as AddIcon } from '../assets/svg/add.svg';
@@ -24,7 +26,7 @@ const Workspace = ({
 
   // const [noteText, setNoteText] = useState('');
 
-  const currentNote = useSelector(selectCurrentNote);
+  // const currentNote = useSelector(selectCurrentNote);
 
 
   // const handleDeleteNote = () => {
