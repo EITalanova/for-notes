@@ -1,11 +1,7 @@
 import style from '../Sidebar/Sidebar.module.css';
 
 const Sidebar = ({ filterNotes, selectedItemIndex, handleNoteClick }) => {
-  //   function a(string) {
 
-  //   string.slice(string.indexOf('\n'));
-
-  // };
   return (
     <ul className={style.notesList}>
       {filterNotes.map(({ noteText, id, noteDate }, index) => {
