@@ -7,7 +7,43 @@ export const fetchNotes = createAsyncThunk(
   'notes/getNotes',
   async (_, thunkAPI) => {
     try {
-        const res = await axios.get(`/note`);
+      const res = await axios.get(`/note`);
+      return { data: res.data };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addNote = createAsyncThunk(
+  'notes,/addNote',
+  async (note, thunkAPI) => {
+    try {
+      const res = axios.post(`/note`);
+      return { data: res.data };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteNote = createAsyncThunk(
+  'notes,/deleteNote',
+  async (noteId, thunkAPI) => {
+    try {
+      const res = axios.delete(`/note`);
+      return { data: res.data };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateNote = createAsyncThunk(
+  'notes,/updateNote',
+  async (noteId, thunkAPI) => {
+    try {
+      const res = axios.patch(`/note`);
       return { data: res.data };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
