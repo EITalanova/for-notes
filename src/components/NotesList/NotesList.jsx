@@ -13,6 +13,7 @@ const NotesList = () => {
   const currentNote = useSelector(selectCurrentNote);
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     dispatch(fetchNotes());
   }, [dispatch]);

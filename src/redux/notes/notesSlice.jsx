@@ -6,6 +6,7 @@ const initialState = {
   currentNote: null,
   isLoading: false,
   error: null,
+  isShowModal: false,
 };
 
 const handlePending = state => {
@@ -24,6 +25,9 @@ const notesSlice = createSlice({
     setCurrentNote: (state, { payload }) => {
       state.currentNote = payload;
     },
+    setIsShowModal: (state, { payload }) => {
+      state.isShowModal = payload;
+    },
   },
   extraReducers: builder =>
     builder
@@ -41,7 +45,14 @@ const notesSlice = createSlice({
         state.notes.push(payload);
       })
       .addCase(addNote.rejected, handleRejected),
+  // .addCase(deleteNote.pending, handlePending)
+  // .addCase(deleteNote.fulfilled, (state, { payload }) => {
+  //   state.isLoading = false;
+  //   state.error = null;
+  //   state.notes.push(payload);
+  // })
+  // .addCase(deleteNote.rejected, handleRejected),
 });
 
-export const { setCurrentNote } = notesSlice.actions;
+export const { setCurrentNote, setIsShowModal } = notesSlice.actions;
 export const notesReducer = notesSlice.reducer;
