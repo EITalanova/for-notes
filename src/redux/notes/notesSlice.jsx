@@ -4,9 +4,10 @@ import { fetchNotes, addNote, deleteNote, updateNote } from './notesThunk';
 const initialState = {
   notes: [],
   currentNote: null,
-  isLoading: false,
   error: null,
+  isLoading: false,
   isShowModal: false,
+  isEditMode: false,
 };
 
 const handlePending = state => {
@@ -28,6 +29,9 @@ const notesSlice = createSlice({
     setIsShowModal: (state, { payload }) => {
       state.isShowModal = payload;
     },
+    setIsEditMode: (state, { payload }) => {
+      state.isEditMode = payload;
+    },
   },
   extraReducers: builder =>
     builder
@@ -42,17 +46,29 @@ const notesSlice = createSlice({
       .addCase(addNote.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.notes.push(payload);
+        state.notes.unshift(payload);
       })
-      .addCase(addNote.rejected, handleRejected),
-  // .addCase(deleteNote.pending, handlePending)
-  // .addCase(deleteNote.fulfilled, (state, { payload }) => {
-  //   state.isLoading = false;
-  //   state.error = null;
-  //   state.notes.push(payload);
-  // })
-  // .addCase(deleteNote.rejected, handleRejected),
+      .addCase(addNote.rejected, handleRejected)
+      .addCase(deleteNote.pending, handlePending)
+      .addCase(deleteNote.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.notes.findIndex(note => note.id === payload.noteId);
+        state.notes.splice(index, 1);
+      })
+      .addCase(deleteNote.rejected, handleRejected)
+      .addCase(updateNote.pending, handlePending)
+      .addCase(updateNote.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        const index = state.notes.findIndex(note => note.id === payload.noteId);
+        if (index !== -1) {
+          state.notes[index].noteText = payload.updatedData;
+        }
+      })
+      .addCase(updateNote.rejected, handleRejected),
 });
 
-export const { setCurrentNote, setIsShowModal } = notesSlice.actions;
+export const { setCurrentNote, setIsShowModal, setIsEditMode } =
+  notesSlice.actions;
 export const notesReducer = notesSlice.reducer;

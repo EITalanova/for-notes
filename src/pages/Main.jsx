@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
+import {
+  selectCurrentNote,
+  selectIsShowModal,
+  selectNotes,
+} from 'redux/notes/notesSelector';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 import Note from '../components/Note/Note';
 import ModalDelete from '../components/ModalDelete/ModalDelete';
@@ -10,10 +17,11 @@ import Workspace from '../components/Workspace/Workspace';
 import notesArr from '../api/fakeData.json';
 
 const Main = () => {
+  const isShowModal = useSelector(selectIsShowModal);
+
   // eslint-disable-next-line
   const [disabledBtn, setDisabledBtn] = useState(true);
   const [disabled, setDisabled] = useState(true);
-  const [showModalDelete, setShowModalDelete] = useState(false);
 
   const [notes, setNotes] = useState(notesArr);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
@@ -23,18 +31,6 @@ const Main = () => {
 
   const [noteText, setNoteText] = useState('');
 
-  const handleAddNote = () => {
-    setNoteText('');
-    setNotes([
-      ...notes,
-      {
-        id: nanoid(),
-        noteDate: new Date().toLocaleDateString().replaceAll('.', '/'),
-        noteText: '',
-      },
-    ]);
-    setSelectedItemIndex(notes.length);
-  };
 
   useEffect(() => {
     setFilterNotes([...notes]);
@@ -75,8 +71,6 @@ const Main = () => {
     <div>
       <div className="toolbarBox">
         <Workspace
-          handleAddNote={handleAddNote}
-          handleShowModalDelete={() => setShowModalDelete(true)}
           handleDisabled={() => setDisabled(false)}
         />
 
@@ -92,12 +86,7 @@ const Main = () => {
 
         <Note disabled={disabled} />
       </div>
-      {showModalDelete && (
-        <ModalDelete
-          // handleDeleteNote={handleDeleteNote}
-          handleCloseModal={() => setShowModalDelete(false)}
-        ></ModalDelete>
-      )}
+      {isShowModal && <ModalDelete />}
     </div>
   );
 };

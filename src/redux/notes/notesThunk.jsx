@@ -28,11 +28,11 @@ export const addNote = createAsyncThunk(
 );
 
 export const deleteNote = createAsyncThunk(
-  'notes,/deleteNote',
-  async (noteId, thunkAPI) => {
+  'notes/deleteNote',
+  async (note, thunkAPI) => {
     try {
-      const res = await axios.delete(`/note`);
-      return { data: res.data };
+      const res = await axios.delete(`/note/${note.id}`);
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -40,11 +40,11 @@ export const deleteNote = createAsyncThunk(
 );
 
 export const updateNote = createAsyncThunk(
-  'notes,/updateNote',
-  async (noteId, thunkAPI) => {
+  'notes/updateNote',
+  async (note, updatedData, thunkAPI) => {
     try {
-      const res = await axios.patch(`/note`);
-      return { data: res.data };
+      const res = await axios.patch(`/note/${note.id}`, updatedData);
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

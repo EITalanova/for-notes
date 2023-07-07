@@ -1,12 +1,19 @@
-import { selectCurrentNote } from 'redux/notes/notesSelector';
+import { selectCurrentNote, selectIsEditMode } from 'redux/notes/notesSelector';
 import { useSelector } from 'react-redux';
 
 import { handleNoteData } from 'utils/handleNoteData';
 
 import style from '../Note/Note.module.css';
+import { useEffect, useState } from 'react';
 
-const Note = ({ disabled }) => {
+const Note = () => {
+  const [editMode, setEditMode] = useState(false);
   const currentNote = useSelector(selectCurrentNote);
+  let isEditMode = useSelector(selectIsEditMode);
+
+  useEffect(() => {
+  setEditMode(isEditMode)
+}, [currentNote])
 
   return (
     <div className={style.noteSection}>
@@ -17,7 +24,7 @@ const Note = ({ disabled }) => {
           </p>
           <textarea
             className={style.noteText}
-            disabled={disabled}
+            disabled={!isEditMode}
             value={currentNote.noteText}
             // onChange={handleEditNote}
           ></textarea>

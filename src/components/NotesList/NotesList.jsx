@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { selectNotes, selectCurrentNote } from 'redux/notes/notesSelector';
-import { setCurrentNote } from 'redux/notes/notesSlice';
+import { setCurrentNote, setIsEditMode } from 'redux/notes/notesSlice';
 
 import { fetchNotes } from 'redux/notes/notesThunk';
 
@@ -13,6 +13,13 @@ const NotesList = () => {
   const currentNote = useSelector(selectCurrentNote);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+   dispatch(setCurrentNote(notes[0]));
+  }, [notes])
+
+  useEffect(() => {
+    setIsEditMode(false);
+  }, [currentNote]);
 
   useEffect(() => {
     dispatch(fetchNotes());
@@ -27,6 +34,7 @@ const NotesList = () => {
     <ul className={style.notesList}>
       {notes &&
         notes.map(({ noteText, id, noteDate }) => {
+
           const isSelectedNotes = currentNote.id === id;
           return (
             <li
