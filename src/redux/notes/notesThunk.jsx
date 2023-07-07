@@ -41,7 +41,7 @@ export const deleteNote = createAsyncThunk(
 
 export const updateNote = createAsyncThunk(
   'notes/updateNote',
-  async (note, updatedData, thunkAPI) => {
+  async ({ note, updatedData }, thunkAPI) => {
     try {
       const res = await axios.patch(`/note/${note.id}`, updatedData);
       return res.data;

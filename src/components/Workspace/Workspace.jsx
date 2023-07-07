@@ -30,13 +30,11 @@ const Workspace = () => {
 
   let selectedtNote = notes[0];
 
-  // useEffect(() => {
-  //  selectedtNote = notes[0];
-  // }, [notes])
-
-  // const selectedtNote = notes[0];
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setIsEditMode(false));
+  }, [currentNote]);
 
   const handleShowModalDelete = () => {
     dispatch(setIsShowModal(true));
@@ -44,7 +42,6 @@ const Workspace = () => {
 
   const handleEditMode = e => {
     dispatch(setIsEditMode(true));
-    console.log(isEditMode);
   };
 
   const handleAddNote = () => {
