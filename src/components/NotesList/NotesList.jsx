@@ -33,7 +33,7 @@ const NotesList = () => {
   return (
     <ul className={style.notesList}>
       {notes &&
-        notes.map(({ noteText, id, noteDate }) => {
+        notes.map(({ noteText, id, noteDate, noteTitle, }) => {
 
           const isSelectedNotes = currentNote.id === id;
           return (
@@ -44,7 +44,7 @@ const NotesList = () => {
               key={id}
               onClick={() => handleSelectNote(id)}
             >
-              <p className={style.notesListTitle}>{noteText}</p>
+              <p className={style.notesListTitle}>{noteTitle}</p>
               <div className={style.notesListBox}>
                 <span>{noteDate}</span>
                 <p className={style.notesListText}>{noteText}</p>

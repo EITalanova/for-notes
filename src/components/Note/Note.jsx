@@ -6,20 +6,28 @@ import { handleNoteData } from 'utils/handleNoteData';
 import style from '../Note/Note.module.css';
 import { useEffect, useState } from 'react';
 import { updateNote } from 'redux/notes/notesThunk';
+import { setCurrentNote } from 'redux/notes/notesSlice';
 
 const Note = () => {
   const dispatch = useDispatch();
   const currentNote = useSelector(selectCurrentNote);
   const isEditMode = useSelector(selectIsEditMode);
 
-  
-  const handleEditNote = (e) => {
-    const updatedData = e.target.value;
-    console.log(e.target.value);
-    dispatch(updateNote(currentNote, updatedData));
-  }
-  
+   useEffect(() => {
+    dispatch(setCurrentNote(currentNote));
+  }, [currentNote, dispatch]);
 
+  const handleEditText = e => {
+    const updatedText = e.target.value;
+    console.log({ ...currentNote, noteText: updatedText });
+    dispatch(updateNote({ ...currentNote, noteText: updatedText }));
+  };
+
+  const handleEditTitle = e => {
+    const updatedText = e.target.value;
+    console.log(e.target.value);
+    dispatch(updateNote({ ...currentNote, noteTitle: updatedText }));
+  };
 
   return (
     <div className={style.noteSection}>
@@ -28,17 +36,17 @@ const Note = () => {
           <p className={style.noteDate}>
             {handleNoteData(currentNote.noteDate)}
           </p>
-          <textarea
+          <input
             // className={style.noteText}
             disabled={!isEditMode}
-            value={currentNote.noteText}
-            onChange={handleEditNote}
-          ></textarea>
+            value={currentNote.noteTitle}
+            onChange={handleEditTitle}
+          ></input>
           <textarea
             className={style.noteText}
             disabled={!isEditMode}
             value={currentNote.noteText}
-            onChange={handleEditNote}
+            onChange={handleEditText}
           ></textarea>
         </>
       )}

@@ -48,6 +48,7 @@ const Workspace = () => {
     const newNote = {
       noteDate: new Date(),
       noteText: '',
+      noteTitle: '',
     };
     dispatch(addNote(newNote));
     dispatch(setCurrentNote(selectedtNote));
