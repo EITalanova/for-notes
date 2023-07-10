@@ -23,10 +23,10 @@ const SearchBox = () => {
 
   const handleSearch = () => {
     if (!searchText) {
-      setFilterNotes(notes);
+      // setFilterNotes(notes);
       return;
     }
-    const filteredNotes = filterNotes.filter(note =>
+    const filteredNotes = notes.filter(note =>
       note.noteText.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
     );
 
@@ -43,6 +43,7 @@ const SearchBox = () => {
 
   const handleChangeSearch = e => {
     setSearchText(e.target.value);
+    console.log(e.target.value);
   };
 
   return (
