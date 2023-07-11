@@ -5,6 +5,7 @@ const initialState = {
   notes: [],
   currentNote: null,
   error: null,
+  filter: '',
   isLoading: false,
   isShowModal: false,
   isEditMode: false,
@@ -32,6 +33,9 @@ const notesSlice = createSlice({
     setIsEditMode: (state, { payload }) => {
       state.isEditMode = payload;
     },
+    setFilter: (state, { payload }) => {
+      state.filter = payload;
+    }
   },
   extraReducers: builder =>
     builder
@@ -69,6 +73,6 @@ const notesSlice = createSlice({
       .addCase(updateNote.rejected, handleRejected),
 });
 
-export const { setCurrentNote, setIsShowModal, setIsEditMode } =
+export const { setCurrentNote, setIsShowModal, setIsEditMode, setFilter } =
   notesSlice.actions;
 export const notesReducer = notesSlice.reducer;

@@ -1,7 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { Notify } from 'notiflix';
 
-import { selectNotes, selectCurrentNote } from 'redux/notes/notesSelector';
+import {
+  selectNotes,
+  selectCurrentNote,
+  selectFilter,
+} from 'redux/notes/notesSelector';
 import { setCurrentNote, setIsEditMode } from 'redux/notes/notesSlice';
 
 import { fetchNotes } from 'redux/notes/notesThunk';
@@ -10,12 +16,15 @@ import style from '../NotesList/NotesList.module.css';
 
 const NotesList = () => {
   const notes = useSelector(selectNotes);
+  const filter = useSelector(selectFilter);
   const currentNote = useSelector(selectCurrentNote);
   const dispatch = useDispatch();
 
+  const [filteredNotes, setFilteredNotes] = useState(notes);
+
   useEffect(() => {
-   dispatch(setCurrentNote(notes[0]));
-  }, [notes])
+    dispatch(setCurrentNote(notes[0]));
+  }, [notes]);
 
   useEffect(() => {
     setIsEditMode(false);
@@ -25,6 +34,17 @@ const NotesList = () => {
     dispatch(fetchNotes());
   }, [dispatch]);
 
+  useEffect(() => {
+    const filteredNotes = notes.filter(
+      note =>
+        note.noteText
+          .toLocaleLowerCase()
+          .includes(filter.toLocaleLowerCase()) ||
+        note.noteTitle.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
+    );
+    setFilteredNotes(filteredNotes);
+  }, [filter]);
+
   const handleSelectNote = id => {
     const selectedNote = notes.find(note => note.id === id);
     dispatch(setCurrentNote(selectedNote));
@@ -32,9 +52,8 @@ const NotesList = () => {
 
   return (
     <ul className={style.notesList}>
-      {notes &&
-        notes.map(({ noteText, id, noteDate, noteTitle, }) => {
-
+      {filteredNotes &&
+        filteredNotes.map(({ noteText, id, noteDate, noteTitle }) => {
           const isSelectedNotes = currentNote.id === id;
           return (
             <li
