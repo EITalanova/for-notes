@@ -24,11 +24,7 @@ const NotesList = () => {
 
   useEffect(() => {
     dispatch(setCurrentNote(notes[0]));
-  }, [notes]);
-
-  useEffect(() => {
-    setIsEditMode(false);
-  }, [currentNote]);
+  }, [notes.length]);
 
   useEffect(() => {
     dispatch(fetchNotes());
@@ -52,8 +48,8 @@ const NotesList = () => {
 
   return (
     <ul className={style.notesList}>
-      {filteredNotes &&
-        filteredNotes.map(({ noteText, id, noteDate, noteTitle }) => {
+      {notes &&
+        notes.map(({ noteText, id, noteDate, noteTitle }) => {
           const isSelectedNotes = currentNote.id === id;
           return (
             <li

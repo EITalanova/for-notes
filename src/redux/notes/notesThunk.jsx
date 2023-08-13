@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://649ec3ce245f077f3e9cddc7.mockapi.io';
+axios.defaults.baseURL = 'https://64be7ae55ee688b6250c7edb.mockapi.io';
 
 export const fetchNotes = createAsyncThunk(
   'notes/getNotes',
@@ -43,7 +43,7 @@ export const updateNote = createAsyncThunk(
   'notes/updateNote',
   async ({ note, updatedData }, thunkAPI) => {
     try {
-      const res = await axios.patch(`/note/${note.id}`, updatedData);
+      const res = await axios.put(`/note/${note.id}`, { ...note, ...updatedData });
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

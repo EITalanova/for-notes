@@ -13,20 +13,22 @@ const Note = () => {
   const currentNote = useSelector(selectCurrentNote);
   const isEditMode = useSelector(selectIsEditMode);
 
-   useEffect(() => {
+  useEffect(() => {
     dispatch(setCurrentNote(currentNote));
   }, [currentNote, dispatch]);
 
   const handleEditText = e => {
     const updatedText = e.target.value;
-    console.log({ ...currentNote, noteText: updatedText });
-    dispatch(updateNote({ ...currentNote, noteText: updatedText }));
+    dispatch(
+      updateNote({ note: currentNote, updatedData: { noteText: updatedText } })
+    );
   };
 
   const handleEditTitle = e => {
     const updatedText = e.target.value;
-    console.log(e.target.value);
-    dispatch(updateNote({ ...currentNote, noteTitle: updatedText }));
+    dispatch(
+      updateNote({ note: currentNote, updatedData: { noteTitle: updatedText } })
+    );
   };
 
   return (

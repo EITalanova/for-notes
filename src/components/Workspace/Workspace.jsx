@@ -25,16 +25,19 @@ import {
 const Workspace = () => {
   const notes = useSelector(selectNotes);
   const currentNote = useSelector(selectCurrentNote);
-  const isShowModal = useSelector(selectIsShowModal);
-  const isEditMode = useSelector(selectIsEditMode);
-
-  let selectedtNote = notes[0];
-
   const dispatch = useDispatch();
+  // const isShowModal = useSelector(selectIsShowModal);
+  // const isEditMode = useSelector(selectIsEditMode);
+
+  const [currentNoteId, setCurrentNoteId] = useState(currentNote.id);
+
+  useEffect(() => {
+    setCurrentNoteId(currentNote.id);
+  }, [currentNote]);
 
   useEffect(() => {
     dispatch(setIsEditMode(false));
-  }, [currentNote]);
+  }, [currentNoteId, dispatch]);
 
   const handleShowModalDelete = () => {
     dispatch(setIsShowModal(true));
@@ -51,7 +54,7 @@ const Workspace = () => {
       noteTitle: '',
     };
     dispatch(addNote(newNote));
-    dispatch(setCurrentNote(selectedtNote));
+    dispatch(setCurrentNote(notes[0]));
   };
 
   return (
