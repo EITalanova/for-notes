@@ -75,6 +75,7 @@ const notesSlice = createSlice({
             state.notes[updatedNoteIndex] = payload;
             if (state.currentNote && state.currentNote.id === payload.id) {
               state.currentNote = payload;
+              
             }
           }
         }

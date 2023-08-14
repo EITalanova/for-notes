@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { Notify } from 'notiflix';
+// import { Notify } from 'notiflix';
 
 import {
   selectNotes,
   selectCurrentNote,
   selectFilter,
 } from 'redux/notes/notesSelector';
-import { setCurrentNote, setIsEditMode } from 'redux/notes/notesSlice';
+import {
+  setCurrentNote,
+  // setIsEditMode
+} from 'redux/notes/notesSlice';
 
 import { fetchNotes } from 'redux/notes/notesThunk';
 
@@ -36,7 +39,7 @@ const NotesList = () => {
         note.noteText
           .toLocaleLowerCase()
           .includes(filter.toLocaleLowerCase()) ||
-        note.noteTitle.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
+        note.title.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     );
     setFilteredNotes(filteredNotes);
   }, [filter]);
@@ -49,7 +52,7 @@ const NotesList = () => {
   return (
     <ul className={style.notesList}>
       {notes &&
-        notes.map(({ noteText, id, noteDate, noteTitle }) => {
+        notes.map(({ noteText, id, noteDate, title }) => {
           const isSelectedNotes = currentNote.id === id;
           return (
             <li
@@ -59,7 +62,7 @@ const NotesList = () => {
               key={id}
               onClick={() => handleSelectNote(id)}
             >
-              <p className={style.notesListTitle}>{noteTitle}</p>
+              <p className={style.notesListTitle}>{title}</p>
               <div className={style.notesListBox}>
                 <span>{noteDate}</span>
                 <p className={style.notesListText}>{noteText}</p>

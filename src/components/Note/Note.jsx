@@ -18,16 +18,18 @@ const Note = () => {
   }, [currentNote, dispatch]);
 
   const handleEditText = e => {
+    const updateDate = new Date();
     const updatedText = e.target.value;
     dispatch(
-      updateNote({ note: currentNote, updatedData: { noteText: updatedText } })
+      updateNote({ note: currentNote, updatedData: { noteDate: updateDate, noteText: updatedText } })
     );
   };
 
   const handleEditTitle = e => {
+    const updateDate = new Date();
     const updatedText = e.target.value;
     dispatch(
-      updateNote({ note: currentNote, updatedData: { noteTitle: updatedText } })
+      updateNote({ note: currentNote, updatedData: { noteDate: updateDate, title: updatedText } })
     );
   };
 
@@ -41,7 +43,7 @@ const Note = () => {
           <input
             // className={style.noteText}
             disabled={!isEditMode}
-            value={currentNote.noteTitle}
+            value={currentNote.title}
             onChange={handleEditTitle}
           ></input>
           <textarea

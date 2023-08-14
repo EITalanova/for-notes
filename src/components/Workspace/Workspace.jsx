@@ -4,9 +4,9 @@ import { useState } from 'react';
 
 import {
   selectCurrentNote,
-  selectIsShowModal,
+  // selectIsShowModal,
   selectNotes,
-  selectIsEditMode,
+  // selectIsEditMode,
 } from 'redux/notes/notesSelector';
 
 import { ReactComponent as DeleteIcon } from '../assets/svg/delete.svg';
@@ -15,7 +15,7 @@ import { ReactComponent as EditIcon } from '../assets/svg/edit.svg';
 
 import style from '../Workspace/Workspace.module.css';
 import { addNote } from 'redux/notes/notesThunk';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import {
   setCurrentNote,
   setIsShowModal,
@@ -51,7 +51,7 @@ const Workspace = () => {
     const newNote = {
       noteDate: new Date(),
       noteText: '',
-      noteTitle: '',
+      title: '',
     };
     dispatch(addNote(newNote));
     dispatch(setCurrentNote(notes[0]));
