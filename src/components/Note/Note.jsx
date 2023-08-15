@@ -41,7 +41,7 @@ const Note = () => {
             {handleNoteData(currentNote.noteDate)}
           </p>
           <input
-            // className={style.noteText}
+            className={style.noteTitle}
             disabled={!isEditMode}
             value={currentNote.title}
             onChange={handleEditTitle}

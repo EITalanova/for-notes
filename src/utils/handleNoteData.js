@@ -12,3 +12,13 @@ export const handleNoteData = noteDate => {
 
   return `${month} ${dayMonth}, ${year} at ${time}`;
 };
+
+export const handleNoteListData = noteDate => {
+  const dateObj = new Date(noteDate);
+
+  return dateObj.toLocaleString('en-US', {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  });
+};

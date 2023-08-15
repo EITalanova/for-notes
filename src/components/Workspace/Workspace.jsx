@@ -26,10 +26,8 @@ const Workspace = () => {
   const notes = useSelector(selectNotes);
   const currentNote = useSelector(selectCurrentNote);
   const dispatch = useDispatch();
-  // const isShowModal = useSelector(selectIsShowModal);
-  // const isEditMode = useSelector(selectIsEditMode);
 
-  const [currentNoteId, setCurrentNoteId] = useState(currentNote.id);
+  const [currentNoteId, setCurrentNoteId] = useState(null);
 
   useEffect(() => {
     setCurrentNoteId(currentNote.id);

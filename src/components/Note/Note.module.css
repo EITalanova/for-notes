@@ -1,11 +1,21 @@
 .noteSection {
-  /* display: flex;
-  flex-direction: column; */
   width: calc(100% - 320px);
+}
+
+.noteTitle {
+  display: block;
+  box-sizing: border-box;
+  padding: 5px 30px;
+  border: none;
+  width: 100%;
+
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .noteText {
   display: flex;
+  box-sizing: border-box;
   padding: 20px 30px;
   border: none;
   height: 100%;
@@ -14,19 +24,13 @@
   font-size: 16px;
 }
 
-.noteText::first-line {
-  font-weight: bold;
-  line-height: 1.7;
-}
-
 .noteDate {
   display: flex;
   justify-content: center;
   padding-top: 10px;
-  width: 100%;
+  max-width: 100%;
 
-
-  font-size: 12px;
+  font-size: 14px;
   color: var(--main-grey);
   background-color: rgb(250, 250, 250);
 }

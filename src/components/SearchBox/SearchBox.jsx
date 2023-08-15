@@ -27,7 +27,7 @@ const SearchBox = () => {
         onChange={handleChangeSearch}
         type="text"
       />
-      <button className={style.searchBoxBtn} onClick={handleSearch}>
+      <button type="button" className={style.searchBoxBtn} onClick={handleSearch}>
         <SearchIcon className={style.searchIcon} />
         Search
       </button>

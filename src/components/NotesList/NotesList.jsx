@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-// import { Notify } from 'notiflix';
+
+import { handleNoteListData } from 'utils/handleNoteData';
 
 import {
   selectNotes,
@@ -10,7 +11,6 @@ import {
 } from 'redux/notes/notesSelector';
 import {
   setCurrentNote,
-  // setIsEditMode
 } from 'redux/notes/notesSlice';
 
 import { fetchNotes } from 'redux/notes/notesThunk';
@@ -52,7 +52,7 @@ const NotesList = () => {
   return (
     <ul className={style.notesList}>
       {notes &&
-        notes.map(({ noteText, id, noteDate, title }) => {
+        filteredNotes.map(({ noteText, id, noteDate, title }) => {
           const isSelectedNotes = currentNote.id === id;
           return (
             <li
@@ -64,7 +64,7 @@ const NotesList = () => {
             >
               <p className={style.notesListTitle}>{title}</p>
               <div className={style.notesListBox}>
-                <span>{noteDate}</span>
+                <span>{handleNoteListData(noteDate)}</span>
                 <p className={style.notesListText}>{noteText}</p>
               </div>
             </li>
