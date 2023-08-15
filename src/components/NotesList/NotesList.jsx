@@ -26,8 +26,8 @@ const NotesList = () => {
   const [filteredNotes, setFilteredNotes] = useState(notes);
 
   useEffect(() => {
-    dispatch(setCurrentNote(notes[0]));
-  }, [notes.length]);
+    dispatch(setCurrentNote(filteredNotes[0]));
+  }, [filteredNotes.length]);
 
   useEffect(() => {
     dispatch(fetchNotes());

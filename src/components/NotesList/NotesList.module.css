@@ -3,7 +3,7 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  width: 320px;
+  width: 400px;
   height: 100vh;
   padding: 0 0 0 25px;
 
@@ -15,11 +15,17 @@
   flex-direction: column;
   justify-content: center;
   gap: 10px;
-  padding-left: 5px;
+  padding: 10px 5px;
 
   height: 70px;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.144);
   cursor: pointer;
+}
+
+.selectedNotesListItem {
+  background-color: rgba(5, 181, 239, 0.214);
+  border-radius: 5px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.144);
 }
 
 .notesListTitle {
@@ -27,24 +33,20 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  font-size: 20px;
 }
 
 .notesListBox {
   display: flex;
-  gap: 15px;
+  gap: 16px;
   align-items: center;
 
-  font-size: 13px;
+  font-size: 17px;
 }
 
 .notesListText {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.selectedNotesListItem {
-  background-color: rgba(5, 181, 239, 0.214);
-  border-radius: 5px;
-  font-size: 17px;
 }
