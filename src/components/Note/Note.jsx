@@ -21,7 +21,10 @@ const Note = () => {
     const updateDate = new Date();
     const updatedText = e.target.value;
     dispatch(
-      updateNote({ note: currentNote, updatedData: { noteDate: updateDate, noteText: updatedText } })
+      updateNote({
+        note: currentNote,
+        updatedData: { noteDate: updateDate, noteText: updatedText },
+      })
     );
   };
 
@@ -29,13 +32,16 @@ const Note = () => {
     const updateDate = new Date();
     const updatedText = e.target.value;
     dispatch(
-      updateNote({ note: currentNote, updatedData: { noteDate: updateDate, title: updatedText } })
+      updateNote({
+        note: currentNote,
+        updatedData: { noteDate: updateDate, title: updatedText },
+      })
     );
   };
 
   return (
     <div className={style.noteSection}>
-      {currentNote && (
+      {currentNote ? (
         <>
           <p className={style.noteDate}>
             {handleNoteData(currentNote.noteDate)}
@@ -53,7 +59,10 @@ const Note = () => {
             onChange={handleEditText}
           ></textarea>
         </>
+      ) : (
+        <p className={style.noteNotification}>Loading... 🧐 </p>
       )}
+      {/* Sorry, nothing found 🙁 */}
     </div>
   );
 };

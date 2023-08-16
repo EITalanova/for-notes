@@ -1,5 +1,6 @@
 .noteSection {
   width: calc(100% - 400px);
+ /* height: calc(100% - 83px); */
 }
 
 .noteDate {
@@ -34,4 +35,11 @@
 
   font-size: 20px;
   line-height: 1.3;
+}
+
+.noteNotification {
+  text-align: center;
+  padding: 200px 30px;
+
+  font-size: 20px;
 }

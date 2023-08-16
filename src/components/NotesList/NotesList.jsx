@@ -31,6 +31,7 @@ const NotesList = () => {
 
   useEffect(() => {
     dispatch(fetchNotes());
+    setFilteredNotes(notes);
   }, [dispatch]);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const NotesList = () => {
 
   return (
     <ul className={style.notesList}>
-      {notes &&
+      {notes && currentNote &&
         filteredNotes.map(({ noteText, id, noteDate, title }) => {
           const isSelectedNotes = currentNote.id === id;
           return (

@@ -18,10 +18,6 @@ const notesPersistConfig = {
   storage,
 };
 
-const currentNotePersistConfig = {
-  key: 'currentNote',
-  storage,
-};
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -34,7 +30,6 @@ const middleware = [
 export const store = configureStore({
   reducer: {
     notes: persistReducer(notesPersistConfig, notesReducer),
-    currentNote: persistReducer(currentNotePersistConfig, notesReducer),
   },
   middleware,
 });

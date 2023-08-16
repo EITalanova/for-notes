@@ -6,7 +6,7 @@ import {
   selectCurrentNote,
   // selectIsShowModal,
   selectNotes,
-  // selectIsEditMode,
+  selectIsEditMode,
 } from 'redux/notes/notesSelector';
 
 import { ReactComponent as DeleteIcon } from '../assets/svg/delete.svg';
@@ -25,12 +25,14 @@ import {
 const Workspace = () => {
   const notes = useSelector(selectNotes);
   const currentNote = useSelector(selectCurrentNote);
+  const isEditMode = useSelector(selectIsEditMode);
   const dispatch = useDispatch();
 
   const [currentNoteId, setCurrentNoteId] = useState(null);
 
   useEffect(() => {
-    setCurrentNoteId(currentNote.id);
+    if(notes.length && currentNote === true) {
+    setCurrentNoteId(currentNote.id);}
   }, [currentNote]);
 
   useEffect(() => {
@@ -64,7 +66,7 @@ const Workspace = () => {
         <button className={style.workspaceBtn} onClick={handleShowModalDelete}>
           <DeleteIcon />
         </button>
-        <button className={style.workspaceBtn} onClick={handleEditMode}>
+        <button disabled={isEditMode} className={style.workspaceBtn} onClick={handleEditMode}>
           <EditIcon />
         </button>
       </div>

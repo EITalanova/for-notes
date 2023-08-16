@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   selectCurrentNote,
   selectIsShowModal,
@@ -19,13 +19,19 @@ const ModalDelete = () => {
   const handleCloseModal = () => {
     dispatch(setIsShowModal(false));
   };
+
   const handleDeleteNote = () => {
     dispatch(setIsShowModal(false));
     dispatch(deleteNote(currentNote));
   };
 
+  useEffect(() => {
+    document.addEventListener('keydown', handleCloseModal);
+    return () => document.removeEventListener('keydown', handleCloseModal);
+  });
+
   return (
-    <div className={style.modalOverlay}>
+    <div className={style.modalOverlay} onClick={handleCloseModal}>
       <div className={style.modalDelete}>
         <button className={style.closeIcon} onClick={handleCloseModal}>
           <CloseIcon />
