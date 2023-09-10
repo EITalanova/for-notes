@@ -42,25 +42,23 @@ const Note = () => {
   return (
     <div className={style.noteSection}>
       {currentNote ? (
-        <>
-          <p className={style.noteDate}>
-            {handleNoteData(currentNote.noteDate)}
-          </p>
-          <input
-            className={style.noteTitle}
-            disabled={!isEditMode}
-            value={currentNote.title}
-            onChange={handleEditTitle}
-          ></input>
-          <textarea
-            className={style.noteText}
-            disabled={!isEditMode}
-            value={currentNote.noteText}
-            onChange={handleEditText}
-          ></textarea>
-        </>
-      ) : (
-        <p className={style.noteNotification}>Loading... 🧐 </p>
+        <> <p className={style.noteDate}>
+          {handleNoteData(currentNote.noteDate)}
+        </p>
+        <input
+          className={style.noteTitle}
+          disabled={!isEditMode}
+          value={currentNote.title}
+          onChange={handleEditTitle}
+        ></input>
+        <textarea
+          className={style.noteText}
+          disabled={!isEditMode}
+          value={currentNote.noteText}
+          onChange={handleEditText}
+        ></textarea>
+      </>) : (
+        <p className={style.noteNotification}>Sorry, nothing found yet 🙁 </p>
       )}
       {/* Sorry, nothing found 🙁 */}
     </div>

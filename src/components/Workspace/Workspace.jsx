@@ -15,7 +15,7 @@ import { ReactComponent as EditIcon } from '../assets/svg/edit.svg';
 
 import style from '../Workspace/Workspace.module.css';
 import { addNote } from 'redux/notes/notesThunk';
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 import {
   setCurrentNote,
   setIsShowModal,
@@ -31,13 +31,14 @@ const Workspace = () => {
   const [currentNoteId, setCurrentNoteId] = useState(null);
 
   useEffect(() => {
-    if(notes.length && currentNote === true) {
-    setCurrentNoteId(currentNote.id);}
+    if (currentNote === true) {
+    setCurrentNoteId(currentNote.id);
+  }
   }, [currentNote]);
 
   useEffect(() => {
     dispatch(setIsEditMode(false));
-  }, [currentNoteId, dispatch]);
+  }, [currentNoteId]);
 
   const handleShowModalDelete = () => {
     dispatch(setIsShowModal(true));
@@ -49,6 +50,7 @@ const Workspace = () => {
 
   const handleAddNote = () => {
     const newNote = {
+      id: nanoid(),
       noteDate: new Date(),
       noteText: '',
       title: '',
