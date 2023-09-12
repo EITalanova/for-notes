@@ -41,9 +41,9 @@ export const deleteNote = createAsyncThunk(
 
 export const updateNote = createAsyncThunk(
   'notes/updateNote',
-  async ({ note, updatedData }, thunkAPI) => {
+  async (note, thunkAPI) => {
     try {
-      const res = await axios.put(`/note/${note.id}`, { ...note, ...updatedData });
+      const res = await axios.put(`/note/${note.id}`, note);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

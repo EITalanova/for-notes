@@ -9,9 +9,7 @@ import {
   selectCurrentNote,
   selectFilter,
 } from 'redux/notes/notesSelector';
-import {
-  setCurrentNote,
-} from 'redux/notes/notesSlice';
+import { setCurrentNote } from 'redux/notes/notesSlice';
 
 import { fetchNotes } from 'redux/notes/notesThunk';
 
@@ -26,11 +24,10 @@ const NotesList = () => {
   const [filteredNotes, setFilteredNotes] = useState(notes);
 
   useEffect(() => {
-setFilteredNotes(notes);
-  }, [notes.length])
+    setFilteredNotes(notes);
+  }, [notes.length, currentNote]);
 
   useEffect(() => {
-    
     dispatch(setCurrentNote(filteredNotes[0]));
   }, [filteredNotes.length]);
 
@@ -57,7 +54,8 @@ setFilteredNotes(notes);
 
   return (
     <ul className={style.notesList}>
-      {notes && currentNote &&
+      {notes &&
+        currentNote &&
         filteredNotes.map(({ noteText, id, noteDate, title }) => {
           const isSelectedNotes = currentNote.id === id;
           return (

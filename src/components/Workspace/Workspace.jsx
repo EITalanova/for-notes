@@ -31,13 +31,15 @@ const Workspace = () => {
   const [currentNoteId, setCurrentNoteId] = useState(null);
 
   useEffect(() => {
-    if (currentNote === true) {
-    setCurrentNoteId(currentNote.id);
-  }
+    if (currentNote) {
+      setCurrentNoteId(currentNote.id);
+    }
   }, [currentNote]);
 
   useEffect(() => {
-    dispatch(setIsEditMode(false));
+    if (isEditMode) {
+      dispatch(setIsEditMode(false));
+    }
   }, [currentNoteId]);
 
   const handleShowModalDelete = () => {
@@ -68,7 +70,11 @@ const Workspace = () => {
         <button className={style.workspaceBtn} onClick={handleShowModalDelete}>
           <DeleteIcon />
         </button>
-        <button disabled={isEditMode} className={style.workspaceBtn} onClick={handleEditMode}>
+        <button
+          disabled={isEditMode}
+          className={style.workspaceBtn}
+          onClick={handleEditMode}
+        >
           <EditIcon />
         </button>
       </div>

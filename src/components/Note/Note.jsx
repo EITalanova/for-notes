@@ -13,51 +13,67 @@ const Note = () => {
   const currentNote = useSelector(selectCurrentNote);
   const isEditMode = useSelector(selectIsEditMode);
 
+  const [note, setNote] = useState(currentNote);
+
   useEffect(() => {
-    dispatch(setCurrentNote(currentNote));
-  }, [currentNote, dispatch]);
+    setNote(currentNote);
+  }, [currentNote]);
+
+  useEffect(() => {
+    if (
+      currentNote.title !== note.title ||
+      currentNote.noteText !== note.noteText
+    ) {
+      const changeNote = setTimeout(() => {
+        dispatch(updateNote(note));
+      }, 2000);
+
+      return () => {
+        clearTimeout(changeNote);
+      };
+    }
+  }, [note]);
 
   const handleEditText = e => {
     const updateDate = new Date();
     const updatedText = e.target.value;
-    dispatch(
-      updateNote({
-        note: currentNote,
-        updatedData: { noteDate: updateDate, noteText: updatedText },
-      })
-    );
+    setNote({
+      ...note,
+      noteDate: updateDate.toISOString(),
+      noteText: updatedText,
+    });
   };
 
   const handleEditTitle = e => {
     const updateDate = new Date();
     const updatedText = e.target.value;
-    dispatch(
-      updateNote({
-        note: currentNote,
-        updatedData: { noteDate: updateDate, title: updatedText },
-      })
-    );
+    setNote({
+      ...currentNote,
+      noteDate: updateDate.toISOString(),
+      title: updatedText,
+    });
   };
 
   return (
     <div className={style.noteSection}>
-      {currentNote ? (
-        <> <p className={style.noteDate}>
-          {handleNoteData(currentNote.noteDate)}
-        </p>
-        <input
-          className={style.noteTitle}
-          disabled={!isEditMode}
-          value={currentNote.title}
-          onChange={handleEditTitle}
-        ></input>
-        <textarea
-          className={style.noteText}
-          disabled={!isEditMode}
-          value={currentNote.noteText}
-          onChange={handleEditText}
-        ></textarea>
-      </>) : (
+      {note ? (
+        <>
+          {' '}
+          <p className={style.noteDate}>{handleNoteData(note.noteDate)}</p>
+          <input
+            className={style.noteTitle}
+            disabled={!isEditMode}
+            value={note.title}
+            onChange={handleEditTitle}
+          ></input>
+          <textarea
+            className={style.noteText}
+            disabled={!isEditMode}
+            value={note.noteText}
+            onChange={handleEditText}
+          ></textarea>
+        </>
+      ) : (
         <p className={style.noteNotification}>Sorry, nothing found yet 🙁 </p>
       )}
       {/* Sorry, nothing found 🙁 */}

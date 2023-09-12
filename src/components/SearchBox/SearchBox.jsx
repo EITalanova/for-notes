@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,8 +14,10 @@ const SearchBox = () => {
   const [searchText, setSearchText] = useState('');
 
   const handleSearch = () => {
-    dispatch(setFilter(searchText));
-    return;
+    if (!searchText) {
+      return Notiflix.Notify.failure('Please enter text to search  ✍️');
+    }
+    return dispatch(setFilter(searchText));
   };
 
   const handleChangeSearch = e => {
@@ -27,7 +31,11 @@ const SearchBox = () => {
         onChange={handleChangeSearch}
         type="text"
       />
-      <button type="button" className={style.searchBoxBtn} onClick={handleSearch}>
+      <button
+        type="button"
+        className={style.searchBoxBtn}
+        onClick={handleSearch}
+      >
         <SearchIcon className={style.searchIcon} />
         Search
       </button>
