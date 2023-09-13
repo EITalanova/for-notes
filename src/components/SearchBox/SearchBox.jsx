@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ReactComponent as SearchIcon } from '../assets/svg/search.svg';
+import { ReactComponent as CloseIcon } from '../assets/svg/close.svg';
 
 import style from '../SearchBox/SearchBox.module.css';
 import { setFilter } from 'redux/notes/notesSlice';
@@ -24,13 +25,30 @@ const SearchBox = () => {
     setSearchText(e.target.value);
   };
 
+  const handleCleanSearch = () => {
+    setSearchText('');
+    dispatch(setFilter(''));
+  };
+
   return (
     <div className={style.searchBox}>
-      <input
-        className={style.searchBoxField}
-        onChange={handleChangeSearch}
-        type="text"
-      />
+      <label className={style.searchBoxLabel}>
+        <input
+          className={style.searchBoxField}
+          onChange={handleChangeSearch}
+          value={searchText}
+          type="text"
+        />
+        {searchText && (
+          <button
+            type="button"
+            className={style.searchBoxCleanBtn}
+            onClick={handleCleanSearch}
+          >
+            <CloseIcon className={style.cleanIcon} />
+          </button>
+        )}
+      </label>
       <button
         type="button"
         className={style.searchBoxBtn}

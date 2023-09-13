@@ -20,9 +20,9 @@ const Note = () => {
   }, [currentNote]);
 
   useEffect(() => {
-    if (
-      currentNote.title !== note.title ||
-      currentNote.noteText !== note.noteText
+    if (currentNote &&
+      (currentNote.title !== note.title ||
+      currentNote.noteText !== note.noteText)
     ) {
       const changeNote = setTimeout(() => {
         dispatch(updateNote(note));

@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -37,14 +39,19 @@ const NotesList = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const filteredNotes = notes.filter(
+    console.log(filter);
+    const filteredNotesSearch = notes.filter(
       note =>
         note.noteText
           .toLocaleLowerCase()
           .includes(filter.toLocaleLowerCase()) ||
         note.title.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     );
-    setFilteredNotes(filteredNotes);
+    // if (filteredNotes !== []) {
+    setFilteredNotes(filteredNotesSearch);
+    // } else {
+    // Notiflix.Notify.failure('Please enter text to search  ✍️')}
+    // setFilteredNotes(filteredNotes);
   }, [filter]);
 
   const handleSelectNote = id => {
