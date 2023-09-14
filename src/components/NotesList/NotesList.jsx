@@ -39,7 +39,6 @@ const NotesList = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(filter);
     const filteredNotesSearch = notes.filter(
       note =>
         note.noteText
@@ -47,15 +46,19 @@ const NotesList = () => {
           .includes(filter.toLocaleLowerCase()) ||
         note.title.toLocaleLowerCase().includes(filter.toLocaleLowerCase())
     );
-    // if (filteredNotes !== []) {
-    setFilteredNotes(filteredNotesSearch);
-    // } else {
-    // Notiflix.Notify.failure('Please enter text to search  ✍️')}
-    // setFilteredNotes(filteredNotes);
-  }, [filter]);
+
+    if (filter.trim() === '') {
+      return;
+    }
+    if (filteredNotesSearch.length) {
+      setFilteredNotes(filteredNotesSearch);
+    } else {
+      Notiflix.Notify.failure('No results were found for your request  🤷‍♀️');
+    }
+  }, [filter, currentNote]);
 
   const handleSelectNote = id => {
-    const selectedNote = notes.find(note => note.id === id);
+    const selectedNote = filteredNotes.find(note => note.id === id);
     dispatch(setCurrentNote(selectedNote));
   };
 

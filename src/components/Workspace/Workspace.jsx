@@ -58,6 +58,7 @@ const Workspace = () => {
       title: '',
     };
     dispatch(addNote(newNote));
+    
     dispatch(setCurrentNote(notes[0]));
   };
 

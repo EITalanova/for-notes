@@ -30,12 +30,20 @@ const SearchBox = () => {
     dispatch(setFilter(''));
   };
 
+  const handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSearch();
+    }
+  };
+
   return (
     <div className={style.searchBox}>
       <label className={style.searchBoxLabel}>
         <input
           className={style.searchBoxField}
           onChange={handleChangeSearch}
+          onKeyPress={handleKeyPress}
           value={searchText}
           type="text"
         />

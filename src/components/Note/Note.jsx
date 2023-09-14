@@ -56,9 +56,8 @@ const Note = () => {
 
   return (
     <div className={style.noteSection}>
-      {note ? (
+      {note && (
         <>
-          {' '}
           <p className={style.noteDate}>{handleNoteData(note.noteDate)}</p>
           <input
             className={style.noteTitle}
@@ -73,10 +72,7 @@ const Note = () => {
             onChange={handleEditText}
           ></textarea>
         </>
-      ) : (
-        <p className={style.noteNotification}>Sorry, nothing found yet 🙁 </p>
-      )}
-      {/* Sorry, nothing found 🙁 */}
+)}
     </div>
   );
 };
