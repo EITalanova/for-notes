@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { ReactComponent as SearchIcon } from '../assets/svg/search.svg';
 import { ReactComponent as CloseIcon } from '../assets/svg/close.svg';
@@ -16,7 +16,8 @@ const SearchBox = () => {
 
   const handleSearch = () => {
     if (!searchText) {
-      return Notiflix.Notify.failure('Please enter text to search  ✍️');
+      return Notiflix.Notify.info('Please enter text to search  ✍️');
+      
     }
     return dispatch(setFilter(searchText));
   };

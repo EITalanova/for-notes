@@ -1,14 +1,30 @@
 .workspaceBox {
   display: flex;
-  gap: 18px;
+  gap: 14px;
+
+  @media screen and (min-width: 1440px) {
+    gap: 18px;
+  }
 }
 
 .workspaceBtn {
   display: flex;
   align-items: center;
-  padding: 12px 44px;
+  padding: 7px 20px;
   fill: rgb(118, 118, 118);
   border-radius: 6px;
+
+  @media screen and (min-width: 768px) {
+    padding: 12px 28px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding: 12px 40px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 12px 44px;
+  }
 }
 
 .workspaceBtn:disabled {
