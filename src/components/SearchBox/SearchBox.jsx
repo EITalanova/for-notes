@@ -1,4 +1,5 @@
 import Notiflix from 'notiflix';
+// import cn from 'classnames';
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -9,7 +10,7 @@ import { ReactComponent as CloseIcon } from '../assets/svg/close.svg';
 import style from '../SearchBox/SearchBox.module.css';
 import { setFilter } from 'redux/notes/notesSlice';
 
-const SearchBox = () => {
+const SearchBox = ({ cssClass }) => {
   const dispatch = useDispatch();
 
   const [searchText, setSearchText] = useState('');
@@ -39,7 +40,7 @@ const SearchBox = () => {
   };
 
   return (
-    <div className={style.searchBox}>
+    <div className={`${cssClass}`}>
       <label className={style.searchBoxLabel}>
         <input
           className={style.searchBoxField}

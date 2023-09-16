@@ -1,32 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { nanoid } from 'nanoid';
+import React
+// , { useState, useEffect }
+  from 'react';
+// import { nanoid } from 'nanoid';
 import {
-  selectCurrentNote,
+  // selectCurrentNote,
   selectIsShowModal,
-  selectNotes,
+  // selectNotes,
 } from 'redux/notes/notesSelector';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  // useDispatch,
+  useSelector
+} from 'react-redux';
 
 import Note from '../components/Note/Note';
 import ModalDelete from '../components/ModalDelete/ModalDelete';
-import SearchBox from '../components/SearchBox/SearchBox';
 import NotesList from '../components/NotesList/NotesList';
-import Workspace from '../components/Workspace/Workspace';
+import Toolbar from 'components/Toolbar/Toolbar';
+import ToolbarDown from 'components/ToolbarDown/ToolbarDown';
 
 const Main = () => {
   const isShowModal = useSelector(selectIsShowModal);
 
   return (
     <div>
-      <div className="toolbarBox">
-        <Workspace />
-        <SearchBox />
-      </div>
+      <Toolbar />
 
       <div className="noteListBox">
         <NotesList />
         <Note />
       </div>
+
+      <ToolbarDown />
 
       {isShowModal && <ModalDelete />}
     </div>
