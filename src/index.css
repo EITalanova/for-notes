@@ -112,6 +112,7 @@ body {
 .noteListBox {
   display: flex;
   position: relative;
+  width: 100%;
 }
 
 .customNotiflix {

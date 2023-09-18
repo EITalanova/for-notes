@@ -1,6 +1,9 @@
 .noteSection {
-  width: calc(100% - 400px);
- /* height: calc(100% - 83px); */
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    width: calc(100% - 400px);
+  }
 }
 
 .noteDate {
