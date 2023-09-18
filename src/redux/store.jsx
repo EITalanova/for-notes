@@ -12,12 +12,17 @@ import {
 } from 'redux-persist';
 
 import { notesReducer } from './notes/notesSlice';
+import { themeReducer } from './theme/themeSlice';
 
 const notesPersistConfig = {
   key: 'notes',
   storage,
 };
 
+const themePersistConfig = {
+  key: 'theme',
+  storage,
+};
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -30,6 +35,7 @@ const middleware = [
 export const store = configureStore({
   reducer: {
     notes: persistReducer(notesPersistConfig, notesReducer),
+    theme: persistReducer(themePersistConfig, themeReducer),
   },
   middleware,
 });

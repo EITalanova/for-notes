@@ -1,4 +1,5 @@
 /* @import-normalize; bring in normalize.css styles */
+@import './variables';
 
 body {
   margin: 0;
@@ -16,7 +17,7 @@ code {
 
 :root {
   --main-black: rgba(39, 39, 39, 1);
-  --main-grey: rgb(118, 118, 118);
+  // --main-grey: rgb(118, 118, 118);
   /* --main-light: rgba(255, 255, 255, 1);
   --main-yellow: rgba(244, 206, 12, 1);
   --bright-yellow: rgba(255, 199, 0, 1);
@@ -24,6 +25,21 @@ code {
   --btn-no_active: rgba(218, 218, 218, 1);
   --text_btn-no_active: rgba(142, 142, 142, 1);
   --main-green: rgba(59, 222, 124, 1); */
+
+
+
+}
+
+html[data-theme='dark'] {
+  --main-grey: rgb(225, 225, 225);
+  $mainTextColor: rgba(0, 0, 0, 1);
+  $accentColor: rgba(3, 46, 221, 1);
+}
+
+html[data-theme='light'] {
+  --main-grey: rgb(67, 66, 66);
+  $mainTextColor: rgba(0, 0, 0, 1);
+  $accentColor: rgba(3, 46, 221, 1);
 }
 
 a {
@@ -100,7 +116,6 @@ body {
     padding: 18px 22px;
   }
 }
-
 
 .toolbarDownBox {
   position: absolute;

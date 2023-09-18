@@ -1,6 +1,5 @@
-import React
-// , { useState, useEffect }
-  from 'react';
+import React from // , { useState, useEffect }
+'react';
 // import { nanoid } from 'nanoid';
 import {
   // selectCurrentNote,
@@ -9,7 +8,7 @@ import {
 } from 'redux/notes/notesSelector';
 import {
   // useDispatch,
-  useSelector
+  useSelector,
 } from 'react-redux';
 
 import Note from '../components/Note/Note';

@@ -9,6 +9,7 @@ import { ReactComponent as CloseIcon } from '../assets/svg/close.svg';
 
 import style from '../SearchBox/SearchBox.module.css';
 import { setFilter } from 'redux/notes/notesSlice';
+import { useTheme } from 'components/hooks/useTheme';
 
 const SearchBox = ({ cssClass }) => {
   const dispatch = useDispatch();

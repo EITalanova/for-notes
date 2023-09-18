@@ -1,8 +1,11 @@
+html[data-theme='dark'] {
+  $lightGrey: rgb(225, 225, 225);
+  $mainTextColor: rgba(0, 0, 0, 1);
+  $accentColor: rgba(3, 46, 221, 1);
+}
 
-// $mainColorWhite: rgba(255, 255, 255, 1);
-// $mainTextColor: rgba(0, 0, 0, 1);
-// $accentColor: rgba(3, 46, 221, 1);
-// $lightGreyColor:rgba(230, 230, 230, 1);
-// $greyColor: rgba(87, 86, 94, 1);
-
-// // 
+html[data-theme='light'] {
+$lightGrey: rgb(67, 66, 66);
+  $mainTextColor: rgba(0, 0, 0, 1);
+  $accentColor: rgba(3, 46, 221, 1);
+}
