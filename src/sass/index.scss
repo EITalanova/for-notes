@@ -8,6 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
 }
 
 code {
@@ -18,28 +19,29 @@ code {
 :root {
   --main-black: rgba(39, 39, 39, 1);
   // --main-grey: rgb(118, 118, 118);
-  /* --main-light: rgba(255, 255, 255, 1);
-  --main-yellow: rgba(244, 206, 12, 1);
-  --bright-yellow: rgba(255, 199, 0, 1);
-  --btn-black: rgba(13, 12, 17, 1);
-  --btn-no_active: rgba(218, 218, 218, 1);
-  --text_btn-no_active: rgba(142, 142, 142, 1);
-  --main-green: rgba(59, 222, 124, 1); */
-
-
-
-}
-
-html[data-theme='dark'] {
-  --main-grey: rgb(225, 225, 225);
-  $mainTextColor: rgba(0, 0, 0, 1);
-  $accentColor: rgba(3, 46, 221, 1);
+  /* --main-light: rgba(255, 255, 255, 1);*/
 }
 
 html[data-theme='light'] {
+  --main-black: rgba(39, 39, 39, 1);
+  --main-grey: rgb(225, 225, 225);
+  --accent-grey: rgb(118, 118, 118);
+  --text-grey: rgb(118, 118, 118);
+  --accent-blue: rgba(5, 181, 239, 0.214);
+  --background: rgb(255, 255, 255);
+  --background-grey: rgb(250, 250, 250);
+  --shadow: rgba(0, 0, 0, 0.144);
+}
+
+html[data-theme='dark'] {
+  --main-black: rgb(255, 255, 255);
   --main-grey: rgb(67, 66, 66);
-  $mainTextColor: rgba(0, 0, 0, 1);
-  $accentColor: rgba(3, 46, 221, 1);
+  --accent-grey: rgb(118, 118, 118);
+  --text-grey: rgb(255, 255, 255);
+  --accent-blue: rgba(51, 35, 219, 0.72);
+  --background: rgba(40, 38, 54, 0.761);
+  --background-grey: rgba(40, 38, 54, 0.109);
+  --shadow: rgba(165, 163, 163, 0.771);
 }
 
 a {
@@ -100,7 +102,7 @@ body {
   justify-content: center;
   padding: 13px 10px;
 
-  background-color: rgb(225, 225, 225);
+  background-color: var(--main-grey);
   box-shadow: 0px 6px 10px rgba(128, 128, 128, 0.5);
   z-index: 2;
 

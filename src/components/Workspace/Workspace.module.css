@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   padding: 7px 20px;
-  fill: rgb(118, 118, 118);
+  fill: var(--accent-grey);
   border-radius: 6px;
 
   @media screen and (min-width: 768px) {
@@ -28,5 +28,5 @@
 }
 
 .workspaceBtn:disabled {
-  fill: rgb(225, 225, 225);
+  fill: var(--main-grey);
 }

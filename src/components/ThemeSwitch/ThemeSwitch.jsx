@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 const ThemeSwitch = () => {
   const dispatch = useDispatch();
   const { theme } = useTheme();
-  console.log(theme);
 
   const handleThemeClick = () => {
     theme === 'dark' ? dispatch(setTheme('light')) : dispatch(setTheme('dark'));

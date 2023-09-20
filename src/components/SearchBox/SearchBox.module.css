@@ -55,6 +55,6 @@
 }
 
 .searchIcon {
-  fill: rgb(118, 118, 118);
+  fill: var(--accent-grey);
   margin-right: 10px;
 }

@@ -15,6 +15,7 @@ const Note = () => {
 
   const [note, setNote] = useState(currentNote);
 
+
   useEffect(() => {
     setNote(currentNote);
   }, [currentNote]);
@@ -26,7 +27,7 @@ const Note = () => {
     ) {
       const changeNote = setTimeout(() => {
         dispatch(updateNote(note));
-      }, 2000);
+      }, 1000);
 
       return () => {
         clearTimeout(changeNote);
