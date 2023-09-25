@@ -6,7 +6,6 @@ import { handleNoteData } from 'utils/handleNoteData';
 import style from '../Note/Note.module.css';
 import { useEffect, useState } from 'react';
 import { updateNote } from 'redux/notes/notesThunk';
-import { setCurrentNote } from 'redux/notes/notesSlice';
 
 const Note = () => {
   const dispatch = useDispatch();
@@ -15,24 +14,25 @@ const Note = () => {
 
   const [note, setNote] = useState(currentNote);
 
-
   useEffect(() => {
     setNote(currentNote);
   }, [currentNote]);
 
   useEffect(() => {
-    if (currentNote &&
+    if (
+      currentNote &&
       (currentNote.title !== note.title ||
-      currentNote.noteText !== note.noteText)
+        currentNote.noteText !== note.noteText)
     ) {
       const changeNote = setTimeout(() => {
         dispatch(updateNote(note));
-      }, 1000);
+      }, 700);
 
       return () => {
         clearTimeout(changeNote);
       };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [note]);
 
   const handleEditText = e => {
@@ -73,7 +73,7 @@ const Note = () => {
             onChange={handleEditText}
           ></textarea>
         </>
-)}
+      )}
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from 'react';
+
 import { ThreeDots } from 'react-loader-spinner';
 import Notiflix from 'notiflix';
 

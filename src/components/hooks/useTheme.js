@@ -1,5 +1,6 @@
 import { useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { selectTheme } from 'redux/theme/themeSelector';
 import { setTheme } from 'redux/theme/themeSlice';
 
@@ -12,6 +13,7 @@ export const useTheme = () => {
 
   useLayoutEffect(() => {
     dispatch(setTheme(defaultTheme));
+    // eslint-disable-next-line
   }, []);
 
   useLayoutEffect(() => {

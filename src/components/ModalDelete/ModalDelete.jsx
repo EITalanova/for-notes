@@ -1,15 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import {
-  selectCurrentNote,
-  selectIsShowModal,
-  selectNotes,
-} from 'redux/notes/notesSelector';
+import { useEffect } from 'react';
+import { selectCurrentNote } from 'redux/notes/notesSelector';
 import { deleteNote } from 'redux/notes/notesThunk';
 import { setIsShowModal } from 'redux/notes/notesSlice';
 
 import { ReactComponent as CloseIcon } from '../assets/svg/close.svg';
-import Notiflix from 'notiflix';
 
 import style from '../ModalDelete/ModalDelete.module.css';
 
@@ -24,11 +19,6 @@ const ModalDelete = () => {
   const handleDeleteNote = () => {
     dispatch(setIsShowModal(false));
     dispatch(deleteNote(currentNote));
-    Notiflix.Report.success(
-      'Congratulations!',
-      'Note successfully deleted. Click "Ok" to continue',
-      'Ok'
-    );
   };
 
   useEffect(() => {

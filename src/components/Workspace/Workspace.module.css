@@ -30,3 +30,7 @@
 .workspaceBtn:disabled {
   fill: var(--main-grey);
 }
+
+.workspaceBtn:disabled svg {
+  fill: var(--shadow);
+}

@@ -1,15 +1,13 @@
 import Notiflix from 'notiflix';
-// import cn from 'classnames';
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { setFilter } from 'redux/notes/notesSlice';
 
 import { ReactComponent as SearchIcon } from '../assets/svg/search.svg';
 import { ReactComponent as CloseIcon } from '../assets/svg/close.svg';
 
 import style from '../SearchBox/SearchBox.module.css';
-import { setFilter } from 'redux/notes/notesSlice';
-import { useTheme } from 'components/hooks/useTheme';
 
 const SearchBox = ({ cssClass }) => {
   const dispatch = useDispatch();
@@ -19,7 +17,6 @@ const SearchBox = ({ cssClass }) => {
   const handleSearch = () => {
     if (!searchText) {
       return Notiflix.Notify.info('Please enter text to search  ✍️');
-      
     }
     return dispatch(setFilter(searchText));
   };
@@ -29,8 +26,8 @@ const SearchBox = ({ cssClass }) => {
   };
 
   const handleCleanSearch = () => {
-    setSearchText('');
     dispatch(setFilter(''));
+    setSearchText('');
   };
 
   const handleKeyPress = e => {

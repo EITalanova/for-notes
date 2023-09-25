@@ -1,5 +1,6 @@
-import style from '../ToolbarDown/ToolbarDown.module.css';
 import SearchBox from 'components/SearchBox/SearchBox';
+
+import style from '../ToolbarDown/ToolbarDown.module.css';
 
 const ToolbarDown = () => {
   return (

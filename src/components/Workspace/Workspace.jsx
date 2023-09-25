@@ -1,26 +1,25 @@
-import React, { useEffect } from 'react'; // { useState, useEffect }
+import { nanoid } from 'nanoid';
+
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
 
 import {
+  setCurrentNote,
+  setIsShowModal,
+  setIsEditMode,
+} from '../../redux/notes/notesSlice';
+import {
   selectCurrentNote,
-  // selectIsShowModal,
   selectNotes,
   selectIsEditMode,
 } from 'redux/notes/notesSelector';
+import { addNote } from 'redux/notes/notesThunk';
 
 import { ReactComponent as DeleteIcon } from '../assets/svg/delete.svg';
 import { ReactComponent as AddIcon } from '../assets/svg/add.svg';
 import { ReactComponent as EditIcon } from '../assets/svg/edit.svg';
 
 import style from '../Workspace/Workspace.module.css';
-import { addNote } from 'redux/notes/notesThunk';
-import { nanoid } from 'nanoid';
-import {
-  setCurrentNote,
-  setIsShowModal,
-  setIsEditMode,
-} from '../../redux/notes/notesSlice';
 
 const Workspace = () => {
   const notes = useSelector(selectNotes);
@@ -40,6 +39,7 @@ const Workspace = () => {
     if (isEditMode) {
       dispatch(setIsEditMode(false));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentNoteId]);
 
   const handleShowModalDelete = () => {
@@ -58,7 +58,7 @@ const Workspace = () => {
       title: '',
     };
     dispatch(addNote(newNote));
-    
+
     dispatch(setCurrentNote(notes[0]));
   };
 

@@ -32,12 +32,16 @@
   box-shadow: none;
 }
 
+.cleanIcon {
+  fill: var(--accent-grey);
+}
+
 .searchBoxBtn {
   justify-content: center;
   padding: 7px 18px;
 
   font-size: 16px;
-  color: var(--main-grey);
+  color: var(--accent-grey);
   border-radius: 6px;
 
   @media screen and (min-width: 768px) {

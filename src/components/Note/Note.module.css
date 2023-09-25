@@ -1,9 +1,9 @@
 .noteSection {
-  /* display: none; */
+  display: none;
 
   @media screen and (min-width: 768px) {
+    display: block;
     width: 100vw;
-    /* background-color: var(--background-grey); */
   }
 }
 
@@ -14,8 +14,9 @@
   max-width: 100%;
 
   font-size: 16px;
+  border: none;
   color: var(--text-grey);
-  /* background-color: var(--background-grey); */
+  background-color: var(--grey-note);
 }
 
 .noteTitle {
@@ -25,10 +26,23 @@
   border: none;
   width: 100%;
 
-  font-size: 23px;
+  font-size: 18px;
   font-weight: bold;
+  border: none;
   color: var(--main-black);
-  
+  background-color: var(--light-note);
+
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 23px;
+  }
+}
+
+.noteTitle:disabled {
+  background-color: var(--grey-note);
 }
 
 .noteText {
@@ -39,9 +53,19 @@
   height: 100%;
   width: 100%;
 
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.3;
-color: var(--main-black);
+  border: none;
+  color: var(--main-black);
+  background-color: var(--light-note);
+
+  @media screen and (min-width: 1440px) {
+    font-size: 20px;
+  }
+}
+
+.noteText:disabled {
+  background-color: var(--grey-note);
 }
 
 .noteNotification {

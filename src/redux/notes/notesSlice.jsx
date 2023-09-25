@@ -62,24 +62,20 @@ const notesSlice = createSlice({
       })
       .addCase(deleteNote.rejected, handleRejected)
       .addCase(updateNote.pending, handlePending)
-      .addCase(
-        updateNote.fulfilled,
-        (state, { payload }) => {
-          state.isLoading = false;
-          state.error = null;
+      .addCase(updateNote.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
 
-          const updatedNoteIndex = state.notes.findIndex(
-            note => note.id === payload.id
-          );
-          if (updatedNoteIndex !== -1) {
-            state.notes[updatedNoteIndex] = payload;
-            if (state.currentNote && state.currentNote.id === payload.id) {
-              state.currentNote = payload;
-              
-            }
+        const updatedNoteIndex = state.notes.findIndex(
+          note => note.id === payload.id
+        );
+        if (updatedNoteIndex !== -1) {
+          state.notes[updatedNoteIndex] = payload;
+          if (state.currentNote && state.currentNote.id === payload.id) {
+            state.currentNote = payload;
           }
         }
-      )
+      })
       .addCase(updateNote.rejected, handleRejected),
 });
 

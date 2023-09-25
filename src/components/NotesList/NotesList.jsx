@@ -5,14 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 import { handleNoteListData } from 'utils/handleNoteData';
-
 import {
   selectNotes,
   selectCurrentNote,
   selectFilter,
 } from 'redux/notes/notesSelector';
 import { setCurrentNote } from 'redux/notes/notesSlice';
-
 import { fetchNotes } from 'redux/notes/notesThunk';
 
 import style from '../NotesList/NotesList.module.css';
@@ -27,15 +25,18 @@ const NotesList = () => {
 
   useEffect(() => {
     setFilteredNotes(notes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notes.length, currentNote]);
 
   useEffect(() => {
     dispatch(setCurrentNote(filteredNotes[0]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredNotes.length]);
 
   useEffect(() => {
     dispatch(fetchNotes());
     setFilteredNotes(notes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   useEffect(() => {
@@ -48,6 +49,7 @@ const NotesList = () => {
     );
 
     if (filter.trim() === '') {
+      setFilteredNotes(notes);
       return;
     }
     if (filteredNotesSearch.length) {
@@ -55,6 +57,7 @@ const NotesList = () => {
     } else {
       Notiflix.Notify.failure('No results were found for your request  🤷‍♀️');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, currentNote]);
 
   const handleSelectNote = id => {

@@ -1,8 +1,9 @@
-import style from '../ThemeSwitch/ThemeSwitch.module.css';
-import { setTheme } from 'redux/theme/themeSlice';
-
-import { useTheme } from 'components/hooks/useTheme';
 import { useDispatch } from 'react-redux';
+
+import { setTheme } from 'redux/theme/themeSlice';
+import { useTheme } from 'components/hooks/useTheme';
+
+import style from '../ThemeSwitch/ThemeSwitch.module.css';
 
 const ThemeSwitch = () => {
   const dispatch = useDispatch();

@@ -1,15 +1,7 @@
-import React from // , { useState, useEffect }
-'react';
-// import { nanoid } from 'nanoid';
-import {
-  // selectCurrentNote,
-  selectIsShowModal,
-  // selectNotes,
-} from 'redux/notes/notesSelector';
-import {
-  // useDispatch,
-  useSelector,
-} from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { selectIsShowModal } from 'redux/notes/notesSelector';
 
 import Note from '../components/Note/Note';
 import ModalDelete from '../components/ModalDelete/ModalDelete';
