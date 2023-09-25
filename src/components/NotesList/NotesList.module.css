@@ -46,11 +46,11 @@
   font-size: 16px;
 
   @media screen and (min-width: 768px) {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   @media screen and (min-width: 1440px) {
-    font-size: 20px;
+    font-size: 19px;
   }
 }
 
@@ -62,11 +62,11 @@
   font-size: 13px;
 
   @media screen and (min-width: 768px) {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   @media screen and (min-width: 1440px) {
-    font-size: 17px;
+    font-size: 16px;
   }
 }
 
