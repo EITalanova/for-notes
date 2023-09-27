@@ -1,8 +1,10 @@
 import React, { lazy, Suspense } from 'react';
+import { Routes, Route } from "react-router-dom";
 
 import { ThreeDots } from 'react-loader-spinner';
 import Notiflix from 'notiflix';
 
+const WelcomePage = lazy(() => import('./pages/Welcome'));
 const MainPage = lazy(() => import('./pages/Main'));
 
 export const App = () => {
@@ -42,7 +44,11 @@ export const App = () => {
         />
       }
     >
-      <MainPage />
+      <Routes>
+        <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/main" element={<MainPage />}/>
+      </Routes>
+
     </Suspense>
   );
 };

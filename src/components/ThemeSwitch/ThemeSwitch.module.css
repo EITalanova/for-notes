@@ -1,44 +1,24 @@
 .themeSwitch {
-  position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 60px;
-  height: 34px;
-}
+  height: 21px;
+  padding: 10px;
 
-.themeSwitch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.themeSlider {
-  position: absolute;
+  background-color: rgba(255, 255, 255);
+  border-radius: 50px;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgb(250, 250, 250);
-  transition: background-color 300ms ease-out;
-  border-radius: 34px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
-.themeSlider:before {
-  position: absolute;
-  content: '';
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: var(--accent-grey);
-  transition: transform 300ms ease-out;
-  border-radius: 50%;
+.themeSwitch[data-ison='true'] {
+  justify-content: flex-end;
 }
 
-input:focus + .themeSlider {
-  box-shadow: 0 0 1px var(--accent-grey);
-}
-input:checked + .themeSlider:before {
-  transform: translateX(26px);
+.themeHandle {
+  width: 30px;
+  height: 30px;
+  background-color: var(--accent-grey);
+  border-radius: 40px;
 }
