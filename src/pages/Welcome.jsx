@@ -1,12 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import ThemeSwitch from 'components/ThemeSwitch/ThemeSwitch';
+
 import { motion } from 'framer-motion';
 import style from '../pages/Welcome.module.css';
 
 const Welcome = () => {
   return (
     <div className={style.welcomeBox}>
+      <div className={style.welcomeHeader}>
+        <button className={style.welcomeLink}>Sing in</button>
+        <button className={style.welcomeLink}>Log in</button>
+        <ThemeSwitch />
+      </div>
+
       <div className={style.welcomeOverlay}></div>
       <motion.div
         className={style.welcomeTitle}
@@ -25,7 +33,7 @@ const Welcome = () => {
       >
         App for your notes
       </motion.div>
-      Register
+
       <Link to="/main">
         <motion.button
           className={style.welcomeBtn}

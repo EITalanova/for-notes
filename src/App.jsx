@@ -45,7 +45,7 @@ export const App = () => {
       }
     >
       <Routes>
-        <Route path="/welcome" element={<WelcomePage />} />
+        <Route path="/" element={<WelcomePage />} />
         <Route path="/main" element={<MainPage />}/>
       </Routes>
 
