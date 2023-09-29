@@ -9,11 +9,11 @@ import style from '../pages/Welcome.module.css';
 const Welcome = () => {
   return (
     <div className={style.welcomeBox}>
-      <div className={style.welcomeHeader}>
-        <button className={style.welcomeLink}>Sing in</button>
-        <button className={style.welcomeLink}>Log in</button>
-        <ThemeSwitch />
-      </div>
+       <div className={style.welcomeHeader}>
+         <button className={style.welcomeLink}>Sing in</button>
+         <button className={style.welcomeLink}>Log in</button>
+         <ThemeSwitch />
+       </div>
 
       <div className={style.welcomeOverlay}></div>
       <motion.div
